@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "leetcode-study-tool"
+version = "1.0.0"
+description = "A tool for studying Leetcode with Python"
+authors = [{name="John Sutor", email="johnsutor3@gmail.com" }]
+license = {file = "LICENSE.txt"}
+readme = "README.md"
+dependencies = ["requests"]
+keywords = ["leetcode", "leet", "study", "Anki"]
+
+[tool.black]
+line-length = 80
+target-version = ["py38", "py39", "py310", "py311"]
+
+[options]
+python_requires = ">=3.6"
+
+[project.scripts]
+leetcode-study-tool = "leetcode_study_tool.cli:main"
+
+[project.urls]
+homepage = "https://github.com/johnsutor/leetcode-study-tool"
+
+[tool.mypy]
+exclude = [
+    "build"
+]
+ignore_missing_imports = true
+
+# [project.optional_dependencies]
+# scripts = ["google-api-python-client", "google-auth-oauthlib", "google-auth-httplib2"]
