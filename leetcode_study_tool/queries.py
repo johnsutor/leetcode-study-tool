@@ -1,13 +1,19 @@
 import json
 import re
-from functools import cache
+from functools import lru_cache
+from typing import Union
 from urllib.parse import urlparse
 
 import requests
 
-from .constants.graphql import (BASE_URL, COMMUNITY_SOLUTIONS,
-                                QUESTION_CONTENT, QUESTION_DETAIL_COMPANY_TAGS,
-                                QUESTION_TITLE, SINGLE_QUESTION_TOPIC_TAGS)
+from .constants.graphql import (
+    BASE_URL,
+    COMMUNITY_SOLUTIONS,
+    QUESTION_CONTENT,
+    QUESTION_DETAIL_COMPANY_TAGS,
+    QUESTION_TITLE,
+    SINGLE_QUESTION_TOPIC_TAGS,
+)
 
 MAPPINGS = {
     "content": QUESTION_CONTENT,
@@ -77,7 +83,7 @@ def get_url(input: str, type: str = "problem") -> str:
         return f"https://leetcode.com/tag/{input}/"
 
 
-@cache
+@lru_cache(maxsize=None)
 def query(content: str, slug: str, **kwargs) -> dict:
     """
     Query the LeetCode GraphQL API for the given content.
@@ -117,7 +123,7 @@ def query(content: str, slug: str, **kwargs) -> dict:
         )
 
 
-def get_data(slug: str, language: str | None = None) -> dict:
+def get_data(slug: str, language: Union[str, None] = None) -> dict:
     """
     Get the relevant data for constructing the Anki card for the given URL.
 

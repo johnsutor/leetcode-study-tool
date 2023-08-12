@@ -3,13 +3,13 @@ import html
 import re
 from functools import partial
 from multiprocessing import Pool
-from typing import List
+from typing import List, Union
 
 from .constants.leetcode_to_neetcode import LEETCODE_TO_NEETCODE
 from .queries import get_data, get_slug, get_url
 
 
-def sanitize(input: str | list | None) -> str | list:
+def sanitize(input: Union[str, list, None]) -> Union[str, list]:
     """
     Sanitize the given input to be Anki-compatible. This includes
     removing delimeters with the desired Anki delimeter chosen
@@ -56,7 +56,7 @@ def generate_solution_link(slug: str, solution_id: str) -> str:
 
 
 def save_output(
-    problems: List[str | None], file: str, format: str = "cards"
+    problems: List[Union[str, None]], file: str, format: str = "cards"
 ) -> None:
     with open(file, "w") as f:
         for problem in problems:
@@ -65,8 +65,8 @@ def save_output(
 
 
 def generate_problem(
-    url: str, language: str | None = None, format: str = "cards"
-) -> str | None:
+    url: str, language: Union[str, None] = None, format: str = "cards"
+) -> Union[str, None]:
     """
     Generates a problem strings for the given URL in the requested format
 
@@ -112,9 +112,7 @@ def generate_problem(
     if str(data["id"]) in LEETCODE_TO_NEETCODE:
         neetcode = LEETCODE_TO_NEETCODE[str(data["id"])]
         problem += "<strong>NeetCode Solution:</strong><br>"
-        problem += (
-            f"<a href=\"{neetcode['url']}\">{neetcode['title']}</a></li><br><br>"
-        )
+        problem += f"<a href=\"{neetcode['url']}\">{neetcode['title']}</a></li><br><br>"
 
     problem += "<strong>LeetCode User Solutions:</strong><br>"
 

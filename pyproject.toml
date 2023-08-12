@@ -4,17 +4,40 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "leetcode-study-tool"
-version = "1.0.0"
+version = "1.0.1"
 description = "A tool for studying Leetcode with Python"
 authors = [{name="John Sutor", email="johnsutor3@gmail.com" }]
 license = {file = "LICENSE.txt"}
 readme = "README.md"
 dependencies = ["requests"]
 keywords = ["leetcode", "leet", "study", "Anki"]
+classifiers=[
+            # Development status
+            'Development Status :: 4 - Beta',
+
+            # Supported OS
+            'Operating System :: Microsoft :: Windows',
+            'Operating System :: MacOS',
+            'Operating System :: POSIX :: Linux',
+
+            # Supported Python versions
+            'Programming Language :: Python :: 3.7',
+            'Programming Language :: Python :: 3.8',
+            'Programming Language :: Python :: 3.9',
+            'Programming Language :: Python :: 3.10',
+            'Programming Language :: Python :: 3.11',
+
+            # License
+            'License :: OSI Approved :: MIT License',
+
+            # Topic
+            'Topic :: Software Development',
+            'Topic :: Education',
+        ]
 
 [tool.black]
 line-length = 80
-target-version = ["py38", "py39", "py310", "py311"]
+target-version = ["py37", "py38", "py39", "py310", "py311"]
 
 [options]
 python_requires = ">=3.6"
@@ -30,6 +53,9 @@ exclude = [
     "build"
 ]
 ignore_missing_imports = true
+
+[tool.setuptools.packages.find]
+include = ["leetcode_study_tool"]  
 
 # [project.optional_dependencies]
 # scripts = ["google-api-python-client", "google-auth-oauthlib", "google-auth-httplib2"]

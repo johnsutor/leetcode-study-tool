@@ -9,6 +9,7 @@ import json
 import os
 import re
 import sys
+from typing import Union
 
 import googleapiclient.discovery
 import googleapiclient.errors
@@ -16,7 +17,7 @@ import googleapiclient.errors
 scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
 
 
-def main(youtube_api_key: str | None = None):
+def main(youtube_api_key: Union[str, None] = None):
     # Disable OAuthlib's HTTPS verification when running locally.
     # *DO NOT* leave this option enabled in production.
     os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
