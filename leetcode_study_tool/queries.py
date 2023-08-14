@@ -83,8 +83,35 @@ def get_url(input: str, type: str = "problem") -> str:
         return f"https://leetcode.com/tag/{input}/"
 
 
+def generate_session(csrf_token: Union[str, None] = None) -> requests.Session:
+    """
+    Generate a requests session with the LeetCode GraphQL API.
+
+    Arguments
+    ---------
+    crsf_token : str
+        The CSRF token to use for the session.
+
+    Returns
+    -------
+    requests.Session
+        A requests session with the LeetCode GraphQL API.
+    """
+    session = requests.Session()
+
+    if csrf_token:
+        session.headers.update({"X-Csrftoken": csrf_token})
+
+    return session
+
+
 @lru_cache(maxsize=None)
-def query(content: str, slug: str, **kwargs) -> dict:
+def query(
+    content: str,
+    slug: str,
+    session: Union[requests.Session, None] = None,
+    **kwargs,
+) -> dict:
     """
     Query the LeetCode GraphQL API for the given content.
 
@@ -108,7 +135,10 @@ def query(content: str, slug: str, **kwargs) -> dict:
         If the response from the LeetCode GraphQL API is not 200.
     """
     assert content in MAPPINGS.keys(), f"Invalid query content: {content}"
-    response = requests.get(
+    if not session:
+        session = generate_session()
+
+    response = session.get(
         url=BASE_URL,
         json={
             "query": MAPPINGS[content],
@@ -123,7 +153,11 @@ def query(content: str, slug: str, **kwargs) -> dict:
         )
 
 
-def get_data(slug: str, language: Union[str, None] = None) -> dict:
+def get_data(
+    slug: str,
+    language: Union[str, None] = None,
+    session: Union[requests.Session, None] = None,
+) -> dict:
     """
     Get the relevant data for constructing the Anki card for the given URL.
 
@@ -139,13 +173,16 @@ def get_data(slug: str, language: Union[str, None] = None) -> dict:
     dict
         The relevant data for constructing the Anki card for the given URL.
     """
-    title = query("title", slug)["question"]["title"]
-    content = query("content", slug)["question"]["content"]
-    id = query("title", slug)["question"]["questionId"]
-    tags = query("tags", slug)["question"]["topicTags"]
-    companies = query("companies", slug)["question"]["companyTags"]
+    if not session:
+        session = generate_session()
+
+    title = query("title", slug, session)["question"]["title"]
+    content = query("content", slug, session)["question"]["content"]
+    id = query("title", slug, session)["question"]["questionId"]
+    tags = query("tags", slug, session)["question"]["topicTags"]
+    companies = query("companies", slug, session)["question"]["companyTags"]
     solutions = query(
-        "solutions", slug, skip=0, first=10, languageTags=(language)
+        "solutions", slug, session, skip=0, first=10, languageTags=(language)
     )["questionSolutions"]["solutions"]
 
     results = {

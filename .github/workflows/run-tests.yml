@@ -1,0 +1,40 @@
+name: Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Lint with ruff
+      run: |
+        pip install ruff 
+        ruff . --ignore E501
+    - name: Type check with MyPy
+      run: |
+        pip install mypy 
+        mypy . --ignore-missing-imports --exclude /build/
+    - name: Test with pytest, ensuring 75% coverage
+      run: |
+        pip install pytest pytest-cov
+        pytest tests/ --cov --cov-fail-under=75

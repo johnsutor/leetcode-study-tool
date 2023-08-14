@@ -45,7 +45,7 @@ class TestQueries(unittest.TestCase):
             ValueError, queries.get_url, self.bad_input, "bad-type"
         )
 
-    @patch("requests.get")
+    @patch("requests.Session.get")
     def test_query(self, mock_get):
         mock_get.return_value.status_code = 200
         mock_get.return_value.content = self.fake_api_response
@@ -68,15 +68,17 @@ class TestQueries(unittest.TestCase):
 
     @patch("leetcode_study_tool.queries.query")
     def test_get_data(self, mock_query):
-        queries.get_data(self.fake_slug, self.fake_language)
+        session = queries.generate_session()
+        queries.get_data(self.fake_slug, self.fake_language, session)
         calls = [
-            call("title", self.fake_slug),
-            call("content", self.fake_slug),
-            call("tags", self.fake_slug),
-            call("companies", self.fake_slug),
+            call("title", self.fake_slug, session),
+            call("content", self.fake_slug, session),
+            call("tags", self.fake_slug, session),
+            call("companies", self.fake_slug, session),
             call(
                 "solutions",
                 self.fake_slug,
+                session,
                 skip=0,
                 first=10,
                 languageTags=(self.fake_language),

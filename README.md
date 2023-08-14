@@ -1,5 +1,6 @@
 # Leetcode Study Tool
 ![Tests Status](https://github.com/johnsutor/leetcode-study-tool/workflows/Tests/badge.svg)
+![Style Status](https://github.com/johnsutor/leetcode-study-tool/workflows/Style/badge.svg)
 [![Python Versions](https://img.shields.io/pypi/pyversions/leetcode-study-tool)](https://pypi.org/project/leetcode-study-tool/)
 [![PyPi](https://img.shields.io/pypi/v/leetcode-study-tool)](https://pypi.org/project/leetcode-study-tool/)
 ![contributions welcome](https://img.shields.io/badge/contributions-welcome-blue.svg?style=flat)
@@ -10,6 +11,9 @@ problems in a format that can be imported to Anki. These cards include three fie
 1. The front of the study card, containing the question ID, Title, URL, and problem description 
 2. The publicly available solutions (and NeetCode solution, if available)
 3. The tags associated with the problem (i.e., if the problem involves a hash map, arrays, etc...)
+
+## Why? 
+This package was created as an opinionated alternative to other existing packages (as listed at the bottom of this README). 
 
 ## Installation
 ```shell
@@ -49,5 +53,11 @@ which will generate the file `output.txt`. We can then open Anki to import these
 - [ ] Add support for importing cards into Quizlet
 - [ ] Add support for fetching questions by topic or tag 
 - [ ] Add support for exporting to an excel sheet
-- [ ] Add support for showing neetcode solutions on the back of the card as a link
-- [ ] Reach 100% test coverage
+- [X] Add support for showing neetcode solutions on the back of the card as a link
+- [ ] Add support for determining which fields to show on the card 
+- [ ] Reach 90% test coverage
+
+## Other Usefull Stuff
+- [Remember anything with Anki](https://foggymountainpass.com/anki-essentials/)
+- [Leetcode Anki Card Generator](https://github.com/fspv/leetcode-anki)
+- [Leetcode API](https://github.com/fspv/python-leetcode)
