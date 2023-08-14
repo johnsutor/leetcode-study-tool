@@ -12,7 +12,6 @@ def save_string(problems: List[Union[str, None]], file: str) -> None:
     file : str
         The file to save the problems to.
     """
-    print("foo")
     with open(file + ".txt", "w") as f:
         for problem in problems:
             if problem:

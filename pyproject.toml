@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "leetcode-study-tool"
-version = "1.0.2"
+version = "1.1.0"
 description = "A tool for studying Leetcode with Python"
 authors = [{name="John Sutor", email="johnsutor3@gmail.com" }]
 license = {file = "LICENSE.txt"}
@@ -47,10 +47,13 @@ leetcode-study-tool = "leetcode_study_tool.cli:main"
 
 [project.urls]
 homepage = "https://github.com/johnsutor/leetcode-study-tool"
+repository = "https://github.com/johnsutor/leetcode-study-tool"
+changelog = "https://github.com/johnsutor/leetcode-study-tool/blob/main/CHANGELOG.md"
 
 [tool.mypy]
 exclude = [
-    "build"
+    "build",
+    "scripts"
 ]
 ignore_missing_imports = true
 

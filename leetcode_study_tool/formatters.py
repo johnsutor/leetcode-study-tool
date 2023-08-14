@@ -110,11 +110,10 @@ def format_anki(url: str, slug: str, data: dict):
                 for solution in data["solutions"]
             ],
         )
-    problem += "<strong>LeetCode User Solutions:</strong><br>"
 
     problem += ";"
 
-    problem += " ".join([tag["slug"] for tag in data["tags"]])
+    problem += " ".join([tag["slug"].lower() for tag in data["tags"]])
 
     # Makes code easier to read to remove at the end
     problem = dedent(problem).replace("\n", "")

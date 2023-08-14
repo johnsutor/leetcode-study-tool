@@ -22,7 +22,7 @@ $ pip install leetcode-study-tool
 
 ## Usage 
 ```shell
-usage: leetcode-study-tool [-h] (--url URL | --file FILE) [--format {cards}] [--output OUTPUT] [--language LANGUAGE]
+usage: leetcode-study-tool [-h] (--url URL | --file FILE | --preset {blind_75,grind_75,grind_169}) [--format {anki}] [--csrf CSRF] [--output OUTPUT] [--language LANGUAGE]
 
 Generates problems from LeetCode questions in a desired format.
 
@@ -30,8 +30,11 @@ options:
   -h, --help            show this help message and exit
   --url URL, -u URL     The URL(s) or slug(s) of the LeetCode question(s) to generate problem(s) for. (default: None)
   --file FILE, -f FILE  The file containing the URL(s) or slug(s) of the LeetCode question(s) to generate problem(s) for. (default: None)
-  --format {cards}, -F {cards}
-                        The format to save the Anki problem(s) in. (default: cards)
+  --preset {blind_75,grind_75,grind_169}, -p {blind_75,grind_75,grind_169}
+                        The preset to use to generate problem(s) for. (default: None)
+  --format {anki}, -F {anki}
+                        The format to save the Leetcode problem(s) in. (default: anki)
+  --csrf CSRF, -c CSRF  The CSRF token to use for LeetCode authentication. (default: None)
   --output OUTPUT, -o OUTPUT
                         The output file to write the problem(s) to. (default: output.txt)
   --language LANGUAGE, -l LANGUAGE

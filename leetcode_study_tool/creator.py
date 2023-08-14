@@ -2,10 +2,10 @@ import argparse
 import html
 import os
 import re
-from functools import partial
 from multiprocessing import Pool
 from typing import List, Union
 
+from .constants.presets import PRESET_MAP
 from .formatters import FORMAT_MAP
 from .outputs import SAVE_MAP
 from .queries import generate_session, get_data, get_slug
@@ -42,17 +42,16 @@ class ProblemsCreator:
             with open(args["file"], "r") as f:
                 self.urls = f.read().splitlines()
 
+        elif args.get("preset"):
+            self.urls = PRESET_MAP[args["preset"]]
+
     def create_problems(self) -> None:
         """
         Create the problems for Anki.
         """
         with Pool() as pool:
             problems = pool.map(
-                partial(
-                    self._generate_problem,
-                    language=self.language,
-                    format=self.format,
-                ),
+                self._generate_problem,
                 self.urls,
             )
 

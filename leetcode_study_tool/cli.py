@@ -1,6 +1,7 @@
 import argparse
 
-from leetcode_study_tool.creator import ProblemsCreator
+from .constants.presets import PRESET_MAP
+from .creator import ProblemsCreator
 
 
 def parse_args() -> argparse.Namespace:
@@ -39,6 +40,14 @@ def parse_args() -> argparse.Namespace:
             "The file containing the URL(s) or slug(s) of the LeetCode"
             " question(s) to generate problem(s) for."
         ),
+    )
+
+    input.add_argument(
+        "--preset",
+        "-p",
+        type=str,
+        choices=PRESET_MAP.keys(),
+        help=("The preset to use to generate problem(s) for."),
     )
 
     parser.add_argument(
