@@ -9,6 +9,6 @@ class TestCli(unittest.TestCase):
         super().setUp()
 
     @patch("argparse.ArgumentParser.parse_args")
-    def test_parse_args(self, mock_parse_args):
+    def test_generate_args(self, mock_parse_args):
         mock_parse_args.return_value = "fake-args"
-        self.assertEqual(cli.parse_args(), "fake-args")
+        self.assertEqual(cli.generate_parser().parse_args(), "fake-args")

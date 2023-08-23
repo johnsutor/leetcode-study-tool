@@ -4,7 +4,7 @@ from .constants.presets import PRESET_MAP
 from .creator import ProblemsCreator
 
 
-def parse_args() -> argparse.Namespace:
+def generate_parser() -> argparse.ArgumentParser:
     """
     Parse the command line arguments.
 
@@ -81,12 +81,12 @@ def parse_args() -> argparse.Namespace:
         help="The language to generate problem(s) for.",
     )
 
-    return parser.parse_args()
+    return parser
 
 
 def main():
-    args = parse_args()
-    creator = ProblemsCreator(args)
+    parser = generate_parser()
+    creator = ProblemsCreator(parser.parse_args())
     creator.create_problems()
 
 

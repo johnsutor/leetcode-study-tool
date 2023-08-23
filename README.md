@@ -5,8 +5,8 @@
 [![PyPi](https://img.shields.io/pypi/v/leetcode-study-tool)](https://pypi.org/project/leetcode-study-tool/)
 ![contributions welcome](https://img.shields.io/badge/contributions-welcome-blue.svg?style=flat)
 
-This package provides a command-line tool for interracting with Leetcode to create flashcards for study,
-which can then be imported into Anki. Currently, this tool supports taking in a list of URLs and outputting 
+This package lets you get grokking as quickly as possible with Leetcode. It provides a command-line tool for interracting with Leetcode to create flashcards for study,
+which can then be imported into Anki. Currently, this tool supports taking in a list of  or popular study sets (including the [Blind 75](https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU), [Grind 75](https://www.techinterviewhandbook.org/grind75), and [Neetcode 150](https://neetcode.io/practice)) and outputting 
 problems in a format that can be imported to Anki. These cards include three fields:
 1. The front of the study card, containing the question ID, Title, URL, and problem description 
 2. The publicly available solutions (and NeetCode solution, if available)
@@ -22,15 +22,20 @@ $ pip install leetcode-study-tool
 
 ## Usage 
 ```shell
-usage: leetcode-study-tool [-h] (--url URL | --file FILE | --preset {blind_75,grind_75,grind_169}) [--format {anki}] [--csrf CSRF] [--output OUTPUT] [--language LANGUAGE]
+usage: leetcode-study-tool [-h]
+                           (--url URL | --file FILE | --preset {blind_75,grind_75,grind_169,neetcode_150,neetcode_all})
+                           [--format {anki}] [--csrf CSRF] [--output OUTPUT]
+                           [--language LANGUAGE]
 
 Generates problems from LeetCode questions in a desired format.
 
 options:
   -h, --help            show this help message and exit
-  --url URL, -u URL     The URL(s) or slug(s) of the LeetCode question(s) to generate problem(s) for. (default: None)
-  --file FILE, -f FILE  The file containing the URL(s) or slug(s) of the LeetCode question(s) to generate problem(s) for. (default: None)
-  --preset {blind_75,grind_75,grind_169}, -p {blind_75,grind_75,grind_169}
+  --url URL, -u URL     The URL(s) or slug(s) of the LeetCode question(s) to generate
+                        problem(s) for. (default: None)
+  --file FILE, -f FILE  The file containing the URL(s) or slug(s) of the LeetCode
+                        question(s) to generate problem(s) for. (default: None)
+  --preset {blind_75,grind_75,grind_169,neetcode_150,neetcode_all}, -p {blind_75,grind_75,grind_169,neetcode_150,neetcode_all}
                         The preset to use to generate problem(s) for. (default: None)
   --format {anki}, -F {anki}
                         The format to save the Leetcode problem(s) in. (default: anki)
@@ -42,7 +47,11 @@ options:
 ```
 
 ## Example 
-In a directory with a file named `questions.txt`, where each line is either a Leetcode problem URL or slug (or a combination of both), we can run the command 
+In the simplest case, if you want to [Grok](https://www.reddit.com/r/leetcode/comments/t5xqb6/how_to_use_grokking/) the most commonly asked questions, you should generate from a preset. For example, generating Anki cards from the [Grind 75](https://www.techinterviewhandbook.org/grind75) is as simple as 
+```shell
+$ leetcode-study-tool -p grind_75
+```
+Perhaps, instead, you'd prefer to import questions that you've already worked on. In a directory with a file named `questions.txt`, where each line is either a Leetcode problem URL or slug (or a combination of both), we can run the command 
 ```shell
 $ leetcode-study-tool -f questions.txt 
 ```
@@ -58,6 +67,8 @@ which will generate the file `output.txt`. We can then open Anki to import these
 - [ ] Add support for exporting to an excel sheet
 - [X] Add support for showing neetcode solutions on the back of the card as a link
 - [ ] Add support for determining which fields to show on the card 
+- [ ] Use TQDM to show card generation progress
+- [ ] Allow for the definition of custom formatters and outputs
 - [ ] Reach 90% test coverage
 
 ## Other Usefull Stuff

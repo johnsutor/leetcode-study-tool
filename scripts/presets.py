@@ -3,19 +3,25 @@
 # Utility script to generate lists of presets for the leetcode_study_tool. This includes
 # the Blind 75, the Grind 75, and the Grind 169.
 
+import argparse
 import json
-import sys
 import urllib
 
 import requests
 from bs4 import BeautifulSoup
 
 
-def main(url: str, output_file: str = "presets.txt"):
-    response = requests.get(url)
+def main(args: argparse.Namespace):
+    if args.url:
+        response = requests.get(args.url)
+        html = response.content
+    else:
+        with open(args.file, "r") as f:
+            html = f.read()
+
     problems = []
 
-    soup = BeautifulSoup(response.content, "html.parser")
+    soup = BeautifulSoup(html, "html.parser")
 
     for link in soup.find_all("a"):
         # save only the links that are leetcode problems
@@ -35,14 +41,34 @@ def main(url: str, output_file: str = "presets.txt"):
             ):
                 problems.append(url.geturl().decode())
 
-    with open(output_file, "w") as f:
+    with open(args.output, "a") as f:
         json.dump(problems, f)
 
 
 if __name__ == "__main__":
-    url = sys.argv[1]
-    if sys.argv[2]:
-        output_file = sys.argv[2]
-    else:
-        output_file = "presets.txt"
-    main(url, output_file)
+    parser = argparse.ArgumentParser()
+
+    input_type = parser.add_mutually_exclusive_group(
+        required=True,
+    )
+    input_type.add_argument(
+        "--url",
+        help="URL of the leetcode list to scrape",
+        type=str,
+    )
+
+    input_type.add_argument(
+        "--file",
+        help="HTML File containing the list of leetcode problems",
+        type=str,
+    )
+
+    parser.add_argument(
+        "--output",
+        help="Output file to write to",
+        type=str,
+        default="presets.txt",
+    )
+
+    args = parser.parse_args()
+    main(args)
