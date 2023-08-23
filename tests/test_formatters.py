@@ -39,3 +39,21 @@ class TestFormatters(unittest.TestCase):
             formatters.format_anki(get_url("two-sum"), "two-sum", data),
             self.correct_anki_formatted_two_sum_problem,
         )
+
+    def test_format_excel(self):
+        data = get_data("two-sum")
+        # Don't check the last two elements of the list because they
+        # will change over time. Also, mocking time causes issues with
+        # urllib, so avoid.
+        output = formatters.format_excel(get_url("two-sum"), "two-sum", data)
+        output = output[:3] + output[4:-2]
+        self.assertListEqual(
+            output,
+            [
+                "1",
+                "Two Sum",
+                "https://leetcode.com/problems/two-sum/",
+                "Array, Hash Table",
+                "https://youtube.com/watch?v=KLlXCFG5TnA",
+            ],
+        )

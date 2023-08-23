@@ -5,12 +5,7 @@
 [![PyPi](https://img.shields.io/pypi/v/leetcode-study-tool)](https://pypi.org/project/leetcode-study-tool/)
 ![contributions welcome](https://img.shields.io/badge/contributions-welcome-blue.svg?style=flat)
 
-This package lets you get grokking as quickly as possible with Leetcode. It provides a command-line tool for interracting with Leetcode to create flashcards for study,
-which can then be imported into Anki. Currently, this tool supports taking in a list of  or popular study sets (including the [Blind 75](https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU), [Grind 75](https://www.techinterviewhandbook.org/grind75), and [Neetcode 150](https://neetcode.io/practice)) and outputting 
-problems in a format that can be imported to Anki. These cards include three fields:
-1. The front of the study card, containing the question ID, Title, URL, and problem description 
-2. The publicly available solutions (and NeetCode solution, if available)
-3. The tags associated with the problem (i.e., if the problem involves a hash map, arrays, etc...)
+This package lets you get grokking as quickly as possible with Leetcode. It provides a command-line tool for interracting with Leetcode to create either an Excel file or Anki flashcards for study. Currently, this tool supports taking in a list of leetcode question slugs or URLs or popular study sets (including the [Blind 75](https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU), [Grind 75](https://www.techinterviewhandbook.org/grind75), and [Neetcode 150](https://neetcode.io/practice)). 
 
 ## Why? 
 This package was created as an opinionated alternative to other existing packages (as listed at the bottom of this README). 
@@ -24,7 +19,7 @@ $ pip install leetcode-study-tool
 ```shell
 usage: leetcode-study-tool [-h]
                            (--url URL | --file FILE | --preset {blind_75,grind_75,grind_169,neetcode_150,neetcode_all})
-                           [--format {anki}] [--csrf CSRF] [--output OUTPUT]
+                           [--format {anki,excel}] [--csrf CSRF] [--output OUTPUT]
                            [--language LANGUAGE]
 
 Generates problems from LeetCode questions in a desired format.
@@ -33,11 +28,11 @@ options:
   -h, --help            show this help message and exit
   --url URL, -u URL     The URL(s) or slug(s) of the LeetCode question(s) to generate
                         problem(s) for. (default: None)
-  --file FILE, -f FILE  The file containing the URL(s) or slug(s) of the LeetCode
-                        question(s) to generate problem(s) for. (default: None)
+  --file FILE, -f FILE  The file containing the URL(s) or slug(s) of the LeetCode question(s)
+                        to generate problem(s) for. (default: None)
   --preset {blind_75,grind_75,grind_169,neetcode_150,neetcode_all}, -p {blind_75,grind_75,grind_169,neetcode_150,neetcode_all}
                         The preset to use to generate problem(s) for. (default: None)
-  --format {anki}, -F {anki}
+  --format {anki,excel}, -F {anki,excel}
                         The format to save the Leetcode problem(s) in. (default: anki)
   --csrf CSRF, -c CSRF  The CSRF token to use for LeetCode authentication. (default: None)
   --output OUTPUT, -o OUTPUT
@@ -59,16 +54,33 @@ which will generate the file `output.txt`. We can then open Anki to import these
 
 ![anki demo](static/anki-demo.gif)
 
+## Anki
+When generating an Anki output, the resulting "cards" are saved as a `.txt` file. These cards include three fields:
+1. The front of the study card, containing the question ID, Title, URL, and problem description 
+2. The publicly available solutions (and NeetCode solution, if available)
+3. The tags associated with the problem (i.e., if the problem involves a hash map, arrays, etc...)
+
+## Excel
+When generating an Excel output, the resulting questions are saved in an `.xlsx` file. Each problem includes the following fields:
+1. ID of the leetcode question
+2. Title of the leetcode question
+3. URL of the leetcode question
+4. Last date that this question was attempted by the user (please note that this is not pulled from your leetcode profile, but left for you to update as you progress in solving leetcode questions)
+5. The tags associated with the problem (i.e., if the problem involves a hash map, arrays, etc...)
+6. Neetcode video link (if it exists)
+7. Solution links for the problem (if they are reachable)
+8. Companies that have asked this question recently in interviews (if they are reachable)
 
 ## Roadmap 
+- [X] Use TQDM to show card generation progress
+- [X] Add support for exporting to an excel sheet
+- [X] Add support for showing neetcode solutions on the back of the card as a 
+- [ ] Add support for getting the difficulty of questions 
 - [ ] Add support for fetching premium questions via authentification
 - [ ] Add support for importing cards into Quizlet
 - [ ] Add support for fetching questions by topic or tag 
-- [ ] Add support for exporting to an excel sheet
-- [X] Add support for showing neetcode solutions on the back of the card as a link
-- [ ] Add support for determining which fields to show on the card 
-- [ ] Use TQDM to show card generation progress
-- [ ] Allow for the definition of custom formatters and outputs
+link
+- [ ] Allow for the definition of custom formatters and outputs (including which fields are included or excluded)
 - [ ] Reach 90% test coverage
 
 ## Other Usefull Stuff

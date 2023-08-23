@@ -1,5 +1,6 @@
+from datetime import date
 from textwrap import dedent
-from typing import List
+from typing import List, Union
 
 from leetcode_study_tool.constants.leetcode_to_neetcode import (
     LEETCODE_TO_NEETCODE,  # fmt: skip
@@ -11,7 +12,7 @@ def format_list_element(
     title: str, elements: List[str], is_link: bool = False
 ) -> str:
     """
-    formats a list element for the given title and elements
+    formats an HTML list element for the given title and elements
 
     Arguments
     ---------
@@ -141,7 +142,7 @@ def format_quizlet(url: str, slug: str, data: dict):
     pass
 
 
-def format_excel(url: str, slug: str, data: dict):
+def format_excel(url: str, slug: str, data: dict) -> List[Union[str, date]]:
     """
     formats an Excel problem for the given URL and data
 
@@ -157,9 +158,37 @@ def format_excel(url: str, slug: str, data: dict):
     Returns
     -------
     str
-        The Excel problem for the given URL and data.
+        The Excel problem for the given URL and data. The problem
+        is formatted as a list of strings, where each string is a
+        column in the Excel file. This row will have the ordering:
+        [id, title, url, date attempted, tags, neetcode, solutions, companies]
     """
-    pass
+    row = []
+    row.append(data["id"])
+    row.append(data["title"])
+    row.append(get_url(url))
+    row.append(date.today())
+    row.append(", ".join([tag["name"] for tag in data["tags"]]))
+    if str(data["id"]) in LEETCODE_TO_NEETCODE:
+        neetcode = LEETCODE_TO_NEETCODE[str(data["id"])]
+        row.append(neetcode["url"])
+    else:
+        row.append("")
+    row.append(
+        "\n".join(
+            [
+                format_solution_link(slug, solution["id"])
+                for solution in data["solutions"]
+            ]
+        )
+    )
+    if data.get("companies"):
+        row.append(
+            ", ".join([company["name"] for company in data["companies"]])
+        )
+    else:
+        row.append("")
+    return row
 
 
 FORMAT_MAP = {

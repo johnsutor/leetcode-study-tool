@@ -2,8 +2,10 @@ import argparse
 import html
 import os
 import re
-from multiprocessing import Pool
+from datetime import date
 from typing import List, Union
+
+from p_tqdm import p_map
 
 from .constants.presets import PRESET_MAP
 from .formatters import FORMAT_MAP
@@ -49,11 +51,13 @@ class ProblemsCreator:
         """
         Create the problems for Anki.
         """
-        with Pool() as pool:
-            problems = pool.map(
-                self._generate_problem,
-                self.urls,
-            )
+        problems = p_map(self._generate_problem, self.urls)
+
+        # with Pool() as pool:
+        #     problems = pool.map(
+        #         self._generate_problem,
+        #         self.urls,
+        #     )
 
         self._save_output(problems, self.output)
 
@@ -83,10 +87,12 @@ class ProblemsCreator:
         input = re.sub(r"(<br>){2,}", "<br>", input)
         return input
 
-    def _save_output(self, problems: List[Union[str, None]], file: str) -> None:
+    def _save_output(
+        self, problems: List[Union[List[Union[str, date]], None]], file: str
+    ) -> None:
         file_name = os.path.splitext(os.path.basename(file))[0]
 
-        SAVE_MAP[self.format](problems, file_name)
+        SAVE_MAP[self.format](problems, file_name)  # type: ignore
 
     def _generate_problem(self, url: str) -> Union[str, None]:
         """

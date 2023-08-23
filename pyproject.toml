@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "leetcode-study-tool"
-version = "1.1.0"
+version = "1.2.0"
 description = "A tool for studying Leetcode with Python"
 authors = [{name="John Sutor", email="johnsutor3@gmail.com" }]
 license = {file = "LICENSE.txt"}
 readme = "README.md"
-dependencies = ["requests"]
+dependencies = ["requests", "XlsxWriter", "p_tqdm"]
 keywords = ["leetcode", "leet", "study", "Anki"]
 classifiers=[
             # Development status

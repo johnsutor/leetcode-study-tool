@@ -55,7 +55,7 @@ def generate_parser() -> argparse.ArgumentParser:
         "-F",
         type=str,
         default="anki",
-        choices=["anki"],
+        choices=["anki", "excel"],
         help="The format to save the Leetcode problem(s) in.",
     )
 

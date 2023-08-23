@@ -2,3 +2,5 @@ setuptools==68.0.0
 wheel==0.38.4
 requests==2.31.0
 types-requests==2.31
+xlsxwriter==3.1.2
+p_tqdm==1.4.0
