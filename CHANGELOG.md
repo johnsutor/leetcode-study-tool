@@ -1,5 +1,8 @@
 # Changelog 
 
+## 1.2.1 
+- Fixed issue with Neetcode titles including semicolons, resulting in ill-formatted Anki cards 
+
 ## 1.2.0
 - Added Neetcode 150 and Neetcode All to presets 
 - Added support for exporting to Excel

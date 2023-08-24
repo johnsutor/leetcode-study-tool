@@ -99,7 +99,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=U4hFQCa1Cq0",
     },
     "118": {
-        "title": "Pascal&#39;s Triangle - Leetcode 118 - Python",
+        "title": "Pascal's Triangle - Leetcode 118 - Python",
         "url": "https://youtube.com/watch?v=nPVEaB3AjUM",
     },
     "1189": {
@@ -226,7 +226,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "141": {
         "title": (
-            "Linked List Cycle - Floyd&#39;s Tortoise and Hare - Leetcode 141 -"
+            "Linked List Cycle - Floyd's Tortoise and Hare - Leetcode 141 -"
             " Python"
         ),
         "url": "https://youtube.com/watch?v=gBTe7lFR3vc",
@@ -246,7 +246,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "1448": {
         "title": (
-            "Microsoft&#39;s Most Asked Question 2021 - Count Good Nodes in a"
+            "Microsoft's Most Asked Question 2021 - Count Good Nodes in a"
             " Binary Tree - Leetcode 1448 - Python"
         ),
         "url": "https://youtube.com/watch?v=7cp5imvDzl4",
@@ -317,7 +317,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "1584": {
         "title": (
-            "Prim&#39;s Algorithm - Minimum Spanning Tree - Min Cost to Connect"
+            "Prim's Algorithm - Minimum Spanning Tree - Min Cost to Connect"
             " all Points - Leetcode 1584 - Python"
         ),
         "url": "https://youtube.com/watch?v=f7JOBJIC-NA",
@@ -698,7 +698,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "287": {
         "title": (
-            "Find the Duplicate Number - Floyd&#39;s Cycle Detection - Leetcode"
+            "Find the Duplicate Number - Floyd's Cycle Detection - Leetcode"
             " 287 - Python"
         ),
         "url": "https://youtube.com/watch?v=wjYnzkAhcNk",
@@ -1177,7 +1177,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=7FCemBxvGw0",
     },
     "743": {
-        "title": "Network Delay Time - Dijkstra&#39;s algorithm - Leetcode 743",
+        "title": "Network Delay Time - Dijkstra's algorithm - Leetcode 743",
         "url": "https://youtube.com/watch?v=EaphyqKU4PQ",
     },
     "746": {
@@ -1218,7 +1218,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "778": {
         "title": (
-            "Swim in Rising Water - Dijkstra&#39;s Algorithm - Leetcode 778 -"
+            "Swim in Rising Water - Dijkstra's Algorithm - Leetcode 778 -"
             " Python"
         ),
         "url": "https://youtube.com/watch?v=amvrKlMLuGY",
