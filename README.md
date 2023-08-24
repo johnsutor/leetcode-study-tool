@@ -1,21 +1,23 @@
-# Leetcode Study Tool
+# 💻 Leetcode Study Tool
 ![Tests Status](https://github.com/johnsutor/leetcode-study-tool/workflows/Tests/badge.svg)
 ![Style Status](https://github.com/johnsutor/leetcode-study-tool/workflows/Style/badge.svg)
 [![Python Versions](https://img.shields.io/pypi/pyversions/leetcode-study-tool)](https://pypi.org/project/leetcode-study-tool/)
 [![PyPi](https://img.shields.io/pypi/v/leetcode-study-tool)](https://pypi.org/project/leetcode-study-tool/)
 ![contributions welcome](https://img.shields.io/badge/contributions-welcome-blue.svg?style=flat)
 
+![Leetcode Study Tool Diagram](./static/leetcode_study_tool_diagram.png)
+
 This package lets you get grokking as quickly as possible with Leetcode. It provides a command-line tool for interracting with Leetcode to create either an Excel file or Anki flashcards for study. Currently, this tool supports taking in a list of leetcode question slugs or URLs or popular study sets (including the [Blind 75](https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU), [Grind 75](https://www.techinterviewhandbook.org/grind75), and [Neetcode 150](https://neetcode.io/practice)). 
 
-## Why? 
+## 🤔 Why? 
 This package was created as an opinionated alternative to other existing packages (as listed at the bottom of this README). 
 
-## Installation
+## 📥 Installation
 ```shell
 $ pip install leetcode-study-tool
 ```
 
-## Usage 
+## 💻 Usage 
 ```shell
 usage: leetcode-study-tool [-h]
                            (--url URL | --file FILE | --preset {blind_75,grind_75,grind_169,neetcode_150,neetcode_all})
@@ -41,7 +43,7 @@ options:
                         The language to generate problem(s) for. (default: None)
 ```
 
-## Example 
+## 💡 Example 
 In the simplest case, if you want to [Grok](https://www.reddit.com/r/leetcode/comments/t5xqb6/how_to_use_grokking/) the most commonly asked questions, you should generate from a preset. For example, generating Anki cards from the [Grind 75](https://www.techinterviewhandbook.org/grind75) is as simple as 
 ```shell
 $ leetcode-study-tool -p grind_75
@@ -54,13 +56,13 @@ which will generate the file `output.txt`. We can then open Anki to import these
 
 ![anki demo](static/anki-demo.gif)
 
-## Anki
+## 📒 Anki
 When generating an Anki output, the resulting "cards" are saved as a `.txt` file. These cards include three fields:
 1. The front of the study card, containing the question ID, Title, URL, and problem description 
 2. The publicly available solutions (and NeetCode solution, if available)
 3. The tags associated with the problem (i.e., if the problem involves a hash map, arrays, etc...)
 
-## Excel
+## 📊 Excel
 When generating an Excel output, the resulting questions are saved in an `.xlsx` file. Each problem includes the following fields:
 1. ID of the leetcode question
 2. Title of the leetcode question
@@ -71,7 +73,7 @@ When generating an Excel output, the resulting questions are saved in an `.xlsx`
 7. Solution links for the problem (if they are reachable)
 8. Companies that have asked this question recently in interviews (if they are reachable)
 
-## Roadmap 
+## 🛣 Roadmap 
 - [X] Use TQDM to show card generation progress
 - [X] Add support for exporting to an excel sheet
 - [X] Add support for showing neetcode solutions on the back of the card as a 
@@ -83,7 +85,7 @@ link
 - [ ] Allow for the definition of custom formatters and outputs (including which fields are included or excluded)
 - [ ] Reach 90% test coverage
 
-## Other Usefull Stuff
+## 🔎 Other Usefull Stuff
 - [Remember anything with Anki](https://foggymountainpass.com/anki-essentials/)
 - [Leetcode Anki Card Generator](https://github.com/fspv/leetcode-anki)
 - [Leetcode API](https://github.com/fspv/python-leetcode)
