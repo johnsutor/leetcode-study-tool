@@ -82,7 +82,9 @@ class ProblemsCreator:
         if isinstance(input, list):
             return input
         input = html.unescape(input)
-        input = re.sub(r"[;\n]", " ", input)
+        # input = input.replace(";", " ")
+        # input = input.replace("\n", " ")
+        input = re.sub(r"[;\n\r]", " ", input)
         input = input.replace("</strong>", "</strong><br>")
         input = re.sub(r"(<br>){2,}", "<br>", input)
         return input

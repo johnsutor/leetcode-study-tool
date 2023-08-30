@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "leetcode-study-tool"
-version = "1.2.1"
+version = "1.2.2"
 description = "A tool for studying Leetcode with Python"
 authors = [{name="John Sutor", email="johnsutor3@gmail.com" }]
 license = {file = "LICENSE.txt"}
