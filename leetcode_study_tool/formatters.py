@@ -110,6 +110,7 @@ def format_anki(url: str, slug: str, data: dict):
                 format_solution_link(slug, solution["id"])
                 for solution in data["solutions"]
             ],
+            is_link=True,
         )
 
     problem += ";"
