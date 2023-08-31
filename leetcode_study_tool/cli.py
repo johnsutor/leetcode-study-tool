@@ -1,7 +1,7 @@
 import argparse
 
-from .constants.presets import PRESET_MAP
-from .creator import ProblemsCreator
+from leetcode_study_tool.constants.presets import PRESET_MAP
+from leetcode_study_tool.creator import ProblemsCreator
 
 
 def generate_parser() -> argparse.ArgumentParser:
