@@ -28,7 +28,7 @@ jobs:
     - name: Examine formatting with black 
       run: |
         pip install black
-        black . --check
+        ruff . --check
     - name: Examine import ordering with isort 
       run: |
         pip install isort

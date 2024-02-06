@@ -29,9 +29,7 @@ class TestCreator(unittest.TestCase):
 
     @patch("builtins.open")
     def test_sanitize(self, mock_open):
-        mock_problem_creator = creator.ProblemsCreator(
-            self.fake_parsed_args_file
-        )
+        mock_problem_creator = creator.ProblemsCreator(self.fake_parsed_args_file)
         self.assertEqual(
             mock_problem_creator._sanitize(self.fake_string_to_sanitize),
             "<strong>fake<string\xa0to>sanitize</strong><br> <p> More  content"
@@ -44,9 +42,7 @@ class TestCreator(unittest.TestCase):
         with patch.dict(
             "leetcode_study_tool.outputs.SAVE_MAP", {"anki": mock_save_string}
         ):
-            mock_problem_creator = creator.ProblemsCreator(
-                self.fake_parsed_args_file
-            )
+            mock_problem_creator = creator.ProblemsCreator(self.fake_parsed_args_file)
             mock_problem_creator._save_output(
                 ["fake-problem-one", "fake-problem-two"], "fake-output"
             )
@@ -61,8 +57,6 @@ class TestCreator(unittest.TestCase):
             "leetcode_study_tool.formatters.FORMAT_MAP",
             {"anki": mock_format_anki},
         ):
-            mock_problem_creator = creator.ProblemsCreator(
-                self.fake_parsed_args_file
-            )
+            mock_problem_creator = creator.ProblemsCreator(self.fake_parsed_args_file)
             mock_problem_creator._generate_problem("two-sum")
             mock_format_anki.assert_called_once()

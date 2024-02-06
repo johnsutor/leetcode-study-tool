@@ -2,15 +2,11 @@ from datetime import date
 from textwrap import dedent
 from typing import List, Union
 
-from leetcode_study_tool.constants.leetcode_to_neetcode import (
-    LEETCODE_TO_NEETCODE,  # fmt: skip
-)
+from leetcode_study_tool.leetcode_to_neetcode import LEETCODE_TO_NEETCODE  # fmt: skip
 from leetcode_study_tool.queries import get_url
 
 
-def format_list_element(
-    title: str, elements: List[str], is_link: bool = False
-) -> str:
+def format_list_element(title: str, elements: List[str], is_link: bool = False) -> str:
     """
     formats an HTML list element for the given title and elements
 
@@ -92,9 +88,7 @@ def format_anki(url: str, slug: str, data: dict):
         )
 
     if data["tags"]:
-        problem += format_list_element(
-            "Tags", [tag["name"] for tag in data["tags"]]
-        )
+        problem += format_list_element("Tags", [tag["name"] for tag in data["tags"]])
 
     problem += ";"
 
@@ -184,9 +178,7 @@ def format_excel(url: str, slug: str, data: dict) -> List[Union[str, date]]:
         )
     )
     if data.get("companies"):
-        row.append(
-            ", ".join([company["name"] for company in data["companies"]])
-        )
+        row.append(", ".join([company["name"] for company in data["companies"]]))
     else:
         row.append("")
     return row

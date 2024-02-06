@@ -13,9 +13,7 @@ class TestFormatters(unittest.TestCase):
     def test_format_list_element(self):
         self.assertEqual(
             dedent(
-                formatters.format_list_element(
-                    "fake-title", ["fake-el-1", "fake-el-2"]
-                )
+                formatters.format_list_element("fake-title", ["fake-el-1", "fake-el-2"])
             ),
             dedent(
                 """

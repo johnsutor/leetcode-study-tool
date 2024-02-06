@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 
 import requests
 
-from leetcode_study_tool.constants.graphql import (
+from leetcode_study_tool.graphql import (
     BASE_URL,
     COMMUNITY_SOLUTIONS,
     QUESTION_CONTENT,

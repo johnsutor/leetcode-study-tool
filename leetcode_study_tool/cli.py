@@ -1,7 +1,7 @@
 import argparse
 
-from leetcode_study_tool.constants.presets import PRESET_MAP
 from leetcode_study_tool.creator import ProblemsCreator
+from leetcode_study_tool.presets import PRESET_MAP
 
 
 def generate_parser() -> argparse.ArgumentParser:
@@ -14,9 +14,7 @@ def generate_parser() -> argparse.ArgumentParser:
         The parsed command line arguments.
     """
     parser = argparse.ArgumentParser(
-        description=(
-            "Generates problems from LeetCode questions in a desired format."
-        ),
+        description=("Generates problems from LeetCode questions in a desired format."),
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 

@@ -4,11 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "leetcode-study-tool"
-version = "1.2.5"
+version = "1.3"
 description = "A tool for studying Leetcode with Python"
 authors = [{name="John Sutor", email="johnsutor3@gmail.com" }]
 license = {file = "LICENSE.txt"}
 readme = "README.md"
+
 dependencies = ["requests", "XlsxWriter", "p_tqdm"]
 keywords = ["leetcode", "leet", "study", "Anki"]
 classifiers=[
@@ -34,6 +35,15 @@ classifiers=[
             'Topic :: Software Development',
             'Topic :: Education',
         ]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "types-requests",
+    "isort",
+    "pytest",
+    "pytest-cov"
+]
 
 [tool.black]
 line-length = 80

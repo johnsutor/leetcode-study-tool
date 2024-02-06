@@ -41,9 +41,7 @@ class TestQueries(unittest.TestCase):
         )
 
     def test_get_url_raises(self):
-        self.assertRaises(
-            ValueError, queries.get_url, self.bad_input, "bad-type"
-        )
+        self.assertRaises(ValueError, queries.get_url, self.bad_input, "bad-type")
 
     @patch("requests.Session.get")
     def test_query(self, mock_get):

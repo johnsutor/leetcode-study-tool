@@ -22,9 +22,7 @@ def save_string(problems: List[Union[str, None]], file: str) -> None:
                 f.write(problem + "\n")
 
 
-def save_excel(
-    problems: List[Union[List[Union[str, date]], None]], file: str
-) -> None:
+def save_excel(problems: List[Union[List[Union[str, date]], None]], file: str) -> None:
     """
     Save the given problems to the given Excel file.
 

@@ -7,9 +7,9 @@ from typing import List, Union
 
 from p_tqdm import p_map
 
-from leetcode_study_tool.constants.presets import PRESET_MAP
 from leetcode_study_tool.formatters import FORMAT_MAP
 from leetcode_study_tool.outputs import SAVE_MAP
+from leetcode_study_tool.presets import PRESET_MAP
 from leetcode_study_tool.queries import generate_session, get_data, get_slug
 
 

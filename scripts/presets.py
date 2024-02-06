@@ -28,10 +28,7 @@ def main(args: argparse.Namespace):
         url = urllib.parse.urlparse(link.get("href"))
 
         try:
-            if (
-                url.path.startswith("/problems/")
-                and url.netloc == "leetcode.com"
-            ):
+            if url.path.startswith("/problems/") and url.netloc == "leetcode.com":
                 problems.append(url.geturl())
         except Exception as e:
             print(e)

@@ -15,9 +15,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=vRbbcKXCxOw",
     },
     "1007": {
-        "title": (
-            "Minimum Domino Rotations for Equal Row - Leetcode 1007 - Python"
-        ),
+        "title": ("Minimum Domino Rotations for Equal Row - Leetcode 1007 - Python"),
         "url": "https://youtube.com/watch?v=VD9NACqBCw4",
     },
     "102": {
@@ -29,15 +27,12 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=d-B_gk_gJtQ",
     },
     "104": {
-        "title": (
-            "Maximum Depth of Binary Tree - 3 Solutions - Leetcode 104 - Python"
-        ),
+        "title": ("Maximum Depth of Binary Tree - 3 Solutions - Leetcode 104 - Python"),
         "url": "https://youtube.com/watch?v=hTM3phVI6YQ",
     },
     "1041": {
         "title": (
-            "Robot Bounded in Circle - Math &amp; Geometry - Leetcode 1041 -"
-            " Python"
+            "Robot Bounded in Circle - Math &amp; Geometry - Leetcode 1041 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=nKv2LnC_g6E",
     },
@@ -53,9 +48,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=ihj4IQGZ2zc",
     },
     "108": {
-        "title": (
-            "Convert Sorted Array to Binary Search Tree - Leetcode 108 - Python"
-        ),
+        "title": ("Convert Sorted Array to Binary Search Tree - Leetcode 108 - Python"),
         "url": "https://youtube.com/watch?v=0K0uCMYq5ng",
     },
     "1094": {
@@ -79,22 +72,18 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=rKnD7rLT0lI",
     },
     "1143": {
-        "title": (
-            "Longest Common Subsequence - Dynamic Programming - Leetcode 1143"
-        ),
+        "title": ("Longest Common Subsequence - Dynamic Programming - Leetcode 1143"),
         "url": "https://youtube.com/watch?v=Ua0GhsJSlWM",
     },
     "115": {
         "title": (
-            "Distinct Subsequences - Dynamic Programming - Leetcode 115 -"
-            " Python"
+            "Distinct Subsequences - Dynamic Programming - Leetcode 115 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=-RDzMJ33nx8",
     },
     "116": {
         "title": (
-            "Populating Next Right Pointers in Each Node - Leetcode 116 -"
-            " Python"
+            "Populating Next Right Pointers in Each Node - Leetcode 116 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=U4hFQCa1Cq0",
     },
@@ -116,15 +105,13 @@ LEETCODE_TO_NEETCODE = {
     },
     "1209": {
         "title": (
-            "Remove All Adjacent Duplicates in String II - Leetcode 1209 -"
-            " Python"
+            "Remove All Adjacent Duplicates in String II - Leetcode 1209 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=w6LcypDgC4w",
     },
     "121": {
         "title": (
-            "Sliding Window: Best Time to Buy and Sell Stock - Leetcode 121 -"
-            " Python"
+            "Sliding Window: Best Time to Buy and Sell Stock - Leetcode 121 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=1pkOgXD63yU",
     },
@@ -134,8 +121,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "1220": {
         "title": (
-            "Count Vowels Permutation - Dynamic Programming - Leetcode 1220 -"
-            " Python"
+            "Count Vowels Permutation - Dynamic Programming - Leetcode 1220 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=VUVpTZVa7Ls",
     },
@@ -176,15 +162,13 @@ LEETCODE_TO_NEETCODE = {
     },
     "129": {
         "title": (
-            "Sum Root to Leaf Numbers - Coding Interview Question -"
-            " Leetcode 129"
+            "Sum Root to Leaf Numbers - Coding Interview Question -" " Leetcode 129"
         ),
         "url": "https://youtube.com/watch?v=Jk16lZGFWxE",
     },
     "1299": {
         "title": (
-            "Leetcode 1299 - REPLACE ELEMENTS WITH GREATEST ELEMENT ON RIGHT"
-            " SIDE"
+            "Leetcode 1299 - REPLACE ELEMENTS WITH GREATEST ELEMENT ON RIGHT" " SIDE"
         ),
         "url": "https://youtube.com/watch?v=ZHjKhUjcsaU",
     },
@@ -226,8 +210,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "141": {
         "title": (
-            "Linked List Cycle - Floyd's Tortoise and Hare - Leetcode 141 -"
-            " Python"
+            "Linked List Cycle - Floyd's Tortoise and Hare - Leetcode 141 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=gBTe7lFR3vc",
     },
@@ -239,9 +222,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=TsA4vbtfCvo",
     },
     "143": {
-        "title": (
-            "Linkedin Interview Question - Reorder List - Leetcode 143 - Python"
-        ),
+        "title": ("Linkedin Interview Question - Reorder List - Leetcode 143 - Python"),
         "url": "https://youtube.com/watch?v=S5bfdUTrKLM",
     },
     "1448": {
@@ -260,8 +241,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "1466": {
         "title": (
-            "Leetcode 1466 - REORDER ROUTES TO MAKE ALL PATHS LEAD TO THE CITY"
-            " ZERO"
+            "Leetcode 1466 - REORDER ROUTES TO MAKE ALL PATHS LEAD TO THE CITY" " ZERO"
         ),
         "url": "https://youtube.com/watch?v=m17yOR5_PpI",
     },
@@ -289,9 +269,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=iu0082c4HDE",
     },
     "152": {
-        "title": (
-            "Maximum Product Subarray - Dynamic Programming - Leetcode 152"
-        ),
+        "title": ("Maximum Product Subarray - Dynamic Programming - Leetcode 152"),
         "url": "https://youtube.com/watch?v=lXVy6YWFcRM",
     },
     "153": {
@@ -303,8 +281,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "155": {
         "title": (
-            "Design Min Stack - Amazon Interview Question - Leetcode 155 -"
-            " Python"
+            "Design Min Stack - Amazon Interview Question - Leetcode 155 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=qkLl7nAwDPo",
     },
@@ -328,8 +305,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "167": {
         "title": (
-            "TWO SUM II - Amazon Coding Interview Question - Leetcode 167 -"
-            " Python"
+            "TWO SUM II - Amazon Coding Interview Question - Leetcode 167 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=cQ1Oz4ckceM",
     },
@@ -338,9 +314,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=7pnhv842keE",
     },
     "17": {
-        "title": (
-            "Letter Combinations of a Phone Number - Backtracking - Leetcode 17"
-        ),
+        "title": ("Letter Combinations of a Phone Number - Backtracking - Leetcode 17"),
         "url": "https://youtube.com/watch?v=0snEunUacZY",
     },
     "173": {
@@ -356,15 +330,12 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=EYeR-_1NRlQ",
     },
     "1834": {
-        "title": (
-            "Single-Threaded CPU - Priority Queue - Leetcode 1834 - Python"
-        ),
+        "title": ("Single-Threaded CPU - Priority Queue - Leetcode 1834 - Python"),
         "url": "https://youtube.com/watch?v=RR1n-d4oYqE",
     },
     "1838": {
         "title": (
-            "Frequency of the Most Frequent Element - Sliding Window - Leetcode"
-            " 1838"
+            "Frequency of the Most Frequent Element - Sliding Window - Leetcode" " 1838"
         ),
         "url": "https://youtube.com/watch?v=vgBrQ0NM5vE",
     },
@@ -380,9 +351,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=eDtMmysldaw",
     },
     "1851": {
-        "title": (
-            "Minimum Interval to Include Each Query - Leetcode 1851 - Python"
-        ),
+        "title": ("Minimum Interval to Include Each Query - Leetcode 1851 - Python"),
         "url": "https://youtube.com/watch?v=5hQ5WWW5awQ",
     },
     "1856": {
@@ -427,8 +396,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "1899": {
         "title": (
-            "Merge Triplets to Form Target Triplet - Greedy - Leetcode 1899 -"
-            " Python"
+            "Merge Triplets to Form Target Triplet - Greedy - Leetcode 1899 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=kShkQLQZ9K4",
     },
@@ -466,9 +434,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=6QQRayzOTD4",
     },
     "1930": {
-        "title": (
-            "Unique Length-3 Palindromic Subsequences - Leetcode 1930 - Python"
-        ),
+        "title": ("Unique Length-3 Palindromic Subsequences - Leetcode 1930 - Python"),
         "url": "https://youtube.com/watch?v=3THUt0vAFLU",
     },
     "1963": {
@@ -490,9 +456,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=73r3KWiEvyk",
     },
     "199": {
-        "title": (
-            "Binary Tree Right Side View - Breadth First Search - Leetcode 199"
-        ),
+        "title": ("Binary Tree Right Side View - Breadth First Search - Leetcode 199"),
         "url": "https://youtube.com/watch?v=d4zLyf32e3I",
     },
     "2": {
@@ -509,8 +473,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "2001": {
         "title": (
-            "Number of Pairs of Interchangeable Rectangles - Leetcode 2001 -"
-            " Python"
+            "Number of Pairs of Interchangeable Rectangles - Leetcode 2001 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=lEQ8ZlLOuyQ",
     },
@@ -538,8 +501,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "206": {
         "title": (
-            "Reverse Linked List - Iterative AND Recursive - Leetcode 206 -"
-            " Python"
+            "Reverse Linked List - Iterative AND Recursive - Leetcode 206 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=G0_I-ZF0S38",
     },
@@ -564,9 +526,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=Akt3glAwyfY",
     },
     "211": {
-        "title": (
-            "Design Add and Search Words Data Structure - Leetcode 211 - Python"
-        ),
+        "title": ("Design Add and Search Words Data Structure - Leetcode 211 - Python"),
         "url": "https://youtube.com/watch?v=BTf05gs_8iU",
     },
     "212": {
@@ -579,8 +539,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "215": {
         "title": (
-            "Kth Largest Element in an Array - Quick Select - Leetcode 215 -"
-            " Python"
+            "Kth Largest Element in an Array - Quick Select - Leetcode 215 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=XEmy13g1Qxc",
     },
@@ -614,8 +573,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "235": {
         "title": (
-            "Lowest Common Ancestor of a Binary Search Tree - Leetcode 235 -"
-            " Python"
+            "Lowest Common Ancestor of a Binary Search Tree - Leetcode 235 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=gs2LMfuOR9k",
     },
@@ -676,9 +634,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=B1k_sxOSgv8",
     },
     "279": {
-        "title": (
-            "Perfect Squares - Dynamic Programming - Leetcode 279 - Python"
-        ),
+        "title": ("Perfect Squares - Dynamic Programming - Leetcode 279 - Python"),
         "url": "https://youtube.com/watch?v=HLZLwjzIVGo",
     },
     "28": {
@@ -713,8 +669,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "295": {
         "title": (
-            "Find Median from Data Stream - Heap &amp; Priority Queue -"
-            " Leetcode 295"
+            "Find Median from Data Stream - Heap &amp; Priority Queue -" " Leetcode 295"
         ),
         "url": "https://youtube.com/watch?v=itmhHWaHupI",
     },
@@ -727,15 +682,13 @@ LEETCODE_TO_NEETCODE = {
     },
     "3": {
         "title": (
-            "Longest Substring Without Repeating Characters - Leetcode 3 -"
-            " Python"
+            "Longest Substring Without Repeating Characters - Leetcode 3 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=wiGpQwVHdE0",
     },
     "300": {
         "title": (
-            "Longest Increasing Subsequence - Dynamic Programming -"
-            " Leetcode 300"
+            "Longest Increasing Subsequence - Dynamic Programming -" " Leetcode 300"
         ),
         "url": "https://youtube.com/watch?v=cjWnW0hdF1Y",
     },
@@ -745,8 +698,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "309": {
         "title": (
-            "Best Time to Buy and Sell Stock with Cooldown - Leetcode 309 -"
-            " Python"
+            "Best Time to Buy and Sell Stock with Cooldown - Leetcode 309 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=I7j0F7AHpb8",
     },
@@ -794,15 +746,11 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=_d0T_2Lk2qA",
     },
     "347": {
-        "title": (
-            "Top K Frequent Elements - Bucket Sort - Leetcode 347 - Python"
-        ),
+        "title": ("Top K Frequent Elements - Bucket Sort - Leetcode 347 - Python"),
         "url": "https://youtube.com/watch?v=YPTqKIgVk-k",
     },
     "35": {
-        "title": (
-            "Search Insert Position - Binary Search - Leetcode 35 - Python"
-        ),
+        "title": ("Search Insert Position - Binary Search - Leetcode 35 - Python"),
         "url": "https://youtube.com/watch?v=K-RYzDZkzCI",
     },
     "355": {
@@ -810,9 +758,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=pNichitDD2E",
     },
     "36": {
-        "title": (
-            "Valid Sudoku - Amazon Interview Question - Leetcode 36 - Python"
-        ),
+        "title": ("Valid Sudoku - Amazon Interview Question - Leetcode 36 - Python"),
         "url": "https://youtube.com/watch?v=TjFXEUCMqI8",
     },
     "367": {
@@ -828,9 +774,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=xW4QsTtaCa4",
     },
     "377": {
-        "title": (
-            "Combination Sum IV - Dynamic Programming - Leetcode 377 - Python"
-        ),
+        "title": ("Combination Sum IV - Dynamic Programming - Leetcode 377 - Python"),
         "url": "https://youtube.com/watch?v=dw2nMCxG0ik",
     },
     "380": {
@@ -881,15 +825,11 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=s-VkcjHqkGI",
     },
     "42": {
-        "title": (
-            "Trapping Rain Water - Google Interview Question - Leetcode 42"
-        ),
+        "title": ("Trapping Rain Water - Google Interview Question - Leetcode 42"),
         "url": "https://youtube.com/watch?v=ZI2z5pq0TqA",
     },
     "424": {
-        "title": (
-            "Longest Repeating Character Replacement - Leetcode 424 - Python"
-        ),
+        "title": ("Longest Repeating Character Replacement - Leetcode 424 - Python"),
         "url": "https://youtube.com/watch?v=gqXU1UyA8pk",
     },
     "43": {
@@ -909,9 +849,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=5rHz_6s2Buw",
     },
     "448": {
-        "title": (
-            "Find All Numbers Disappeared in an Array - Leetcode 448 - Python"
-        ),
+        "title": ("Find All Numbers Disappeared in an Array - Leetcode 448 - Python"),
         "url": "https://youtube.com/watch?v=8i-f24YFWC4",
     },
     "45": {
@@ -1069,9 +1007,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=aBbsfn863oA",
     },
     "64": {
-        "title": (
-            "Minimum Path Sum - Dynamic Programming - Leetcode 64 - Python"
-        ),
+        "title": ("Minimum Path Sum - Dynamic Programming - Leetcode 64 - Python"),
         "url": "https://youtube.com/watch?v=pGMsrvt0fpk",
     },
     "658": {
@@ -1114,9 +1050,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=FXWRE67PLL0",
     },
     "691": {
-        "title": (
-            "Stickers to Spell Word - DP Memoization - Leetcode 691 - Python"
-        ),
+        "title": ("Stickers to Spell Word - DP Memoization - Leetcode 691 - Python"),
         "url": "https://youtube.com/watch?v=hsomLb6mUdI",
     },
     "695": {
@@ -1125,8 +1059,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "698": {
         "title": (
-            "Partition to K Equal Sum Subsets - Backtracking - Leetcode 698 -"
-            " Python"
+            "Partition to K Equal Sum Subsets - Backtracking - Leetcode 698 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=mBk4I0X46oI",
     },
@@ -1171,9 +1104,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=Ber2pi2C0j0",
     },
     "740": {
-        "title": (
-            "Delete and Earn - Dynamic Programming - Leetcode 740 - Python"
-        ),
+        "title": ("Delete and Earn - Dynamic Programming - Leetcode 740 - Python"),
         "url": "https://youtube.com/watch?v=7FCemBxvGw0",
     },
     "743": {
@@ -1182,8 +1113,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "746": {
         "title": (
-            "Min Cost Climbing Stairs - Dynamic Programming - Leetcode 746 -"
-            " Python"
+            "Min Cost Climbing Stairs - Dynamic Programming - Leetcode 746 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=ktmzAZWkEZ0",
     },
@@ -1196,9 +1126,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=Pzg3bCDY87w",
     },
     "76": {
-        "title": (
-            "Minimum Window Substring - Airbnb Interview Question - Leetcode 76"
-        ),
+        "title": ("Minimum Window Substring - Airbnb Interview Question - Leetcode 76"),
         "url": "https://youtube.com/watch?v=jSto0O4AJbM",
     },
     "763": {
@@ -1207,8 +1135,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "767": {
         "title": (
-            "Reorganize String - Tesla Interview Question - Leetcode 767 -"
-            " Python"
+            "Reorganize String - Tesla Interview Question - Leetcode 767 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=2g_b1aYTHeg",
     },
@@ -1218,8 +1145,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "778": {
         "title": (
-            "Swim in Rising Water - Dijkstra's Algorithm - Leetcode 778 -"
-            " Python"
+            "Swim in Rising Water - Dijkstra's Algorithm - Leetcode 778 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=amvrKlMLuGY",
     },
@@ -1229,8 +1155,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "787": {
         "title": (
-            "Bellman-Ford - Cheapest Flights within K Stops - Leetcode 787 -"
-            " Python"
+            "Bellman-Ford - Cheapest Flights within K Stops - Leetcode 787 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=5eIK3zUdYmE",
     },
@@ -1284,8 +1209,7 @@ LEETCODE_TO_NEETCODE = {
     },
     "894": {
         "title": (
-            "All Possible Full Binary Trees - Memoization - Leetcode 894 -"
-            " Python"
+            "All Possible Full Binary Trees - Memoization - Leetcode 894 -" " Python"
         ),
         "url": "https://youtube.com/watch?v=nZtrZPTTCAo",
     },
@@ -1341,9 +1265,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=izRDc1il9Pk",
     },
     "97": {
-        "title": (
-            "Interleaving Strings - Dynamic Programming - Leetcode 97 - Python"
-        ),
+        "title": ("Interleaving Strings - Dynamic Programming - Leetcode 97 - Python"),
         "url": "https://youtube.com/watch?v=3Rw3p9LrgvE",
     },
     "973": {
@@ -1358,9 +1280,7 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=FPCZsG_AkUg",
     },
     "98": {
-        "title": (
-            "Validate Binary Search Tree - Depth First Search - Leetcode 98"
-        ),
+        "title": ("Validate Binary Search Tree - Depth First Search - Leetcode 98"),
         "url": "https://youtube.com/watch?v=s6ATEkipzow",
     },
     "981": {
