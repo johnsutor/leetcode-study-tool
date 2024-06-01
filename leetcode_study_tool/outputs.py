@@ -40,27 +40,66 @@ def save_excel(problems: List[Union[List[Union[str, date]], None]], file: str) -
 
     worksheet.write(0, 0, "ID")
     worksheet.write(0, 1, "Title")
+    worksheet.write(0, 2, "Difficulty")
     worksheet.write(
         0,
-        2,
+        3,
         "Url",
     )
-    worksheet.write(0, 3, "Date Attempted")
-    worksheet.write(0, 4, "Tags")
-    worksheet.write(0, 5, "Neetcode")
-    worksheet.write(0, 6, "Solutions")
-    worksheet.write(0, 7, "Companies")
+    worksheet.write(0, 4, "Date Attempted")
+    worksheet.write(0, 5, "Tags")
+    worksheet.write(0, 6, "Neetcode")
+    worksheet.write(0, 7, "Solutions")
+    worksheet.write(0, 8, "Companies")
 
     # Add bold formatting to the first row
     bold = workbook.add_format({"bold": True})
     worksheet.set_row(0, None, bold)
 
+    # Add formatting based on the difficulty
+    worksheet.conditional_format(
+        1,
+        2,
+        len(problems),
+        2,
+        {
+            "type": "cell",
+            "criteria": "equal to",
+            "value": "Easy",
+            "format": workbook.add_format({"bg_color": "#00FF00"}),
+        },
+    )
+    worksheet.conditional_format(
+        1,
+        2,
+        len(problems),
+        2,
+        {
+            "type": "cell",
+            "criteria": "equal to",
+            "value": "Medium",
+            "format": workbook.add_format({"bg_color": "#FFFF00"}),
+        },
+    )
+    worksheet.conditional_format(
+        1,
+        2,
+        len(problems),
+        2,
+        {
+            "type": "cell",
+            "criteria": "equal to",
+            "value": "Hard",
+            "format": workbook.add_format({"bg_color": "#FF0000"}),
+        },
+    )
+
     # Add gradient formatting to the date attempted row
     worksheet.conditional_format(
         1,
-        3,
+        4,
         len(problems),
-        3,
+        4,
         {
             "type": "3_color_scale",
             "min_color": "red",

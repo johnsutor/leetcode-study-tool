@@ -1,5 +1,10 @@
 # Changelog 
 
+## 1.2.2
+- Add difficulty
+- Add color for difficulty in excel 
+- Query more Neetcode videos and update video dictionary
+
 ## 1.2.1 
 - Fixed issue with Neetcode titles including semicolons, resulting in ill-formatted Anki cards 
 

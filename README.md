@@ -77,7 +77,7 @@ When generating an Excel output, the resulting questions are saved in an `.xlsx`
 - [X] Use TQDM to show card generation progress
 - [X] Add support for exporting to an excel sheet
 - [X] Add support for showing neetcode solutions on the back of the card as a 
-- [ ] Add support for getting the difficulty of questions 
+- [X] Add support for getting the difficulty of questions 
 - [ ] Add support for fetching premium questions via authentification
 - [ ] Add support for importing cards into Quizlet
 - [ ] Add support for fetching questions by topic or tag 

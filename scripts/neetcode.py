@@ -39,28 +39,31 @@ def main(youtube_api_key: Union[str, None] = None):
 
     # Obtain all videos from NeetCode channel
     all_videos = []
-    next_page_token = None
-    while True:
-        if next_page_token:
-            request = youtube.search().list(
-                part="snippet",
-                channelId="UC_mYaQAE6-71rjSN6CeCA-g",
-                maxResults=50,
-                pageToken=next_page_token,
-            )
-        else:
-            request = youtube.search().list(
-                part="snippet",
-                channelId="UC_mYaQAE6-71rjSN6CeCA-g",
-                maxResults=50,
-                type="video",
-            )
-        response = request.execute()
-        if response.get("nextPageToken", False):
-            next_page_token = response["nextPageToken"]
+    channel_ids = ["UC_mYaQAE6-71rjSN6CeCA-g", "UCevUmOfLTUX9MNGJQKsPdIA"]
+    for channel in channel_ids:
+        next_page_token = None
+        while True:
+            if next_page_token:
+                request = youtube.search().list(
+                    part="snippet",
+                    channelId=channel,
+                    maxResults=50,
+                    pageToken=next_page_token,
+                )
+            else:
+                request = youtube.search().list(
+                    part="snippet",
+                    channelId=channel,
+                    maxResults=50,
+                )
+            response = request.execute()
             all_videos.extend(response["items"])
-        else:
-            break
+            if response.get("nextPageToken", False):
+                next_page_token = response["nextPageToken"]
+            else:
+                break
+
+    print(f"Found {len(all_videos)} videos from NeetCode channel(s).")
 
     # Create dictionary mapping Leetcode ID to each video with metadata
     leetcode_id_to_video = {}
@@ -73,6 +76,7 @@ def main(youtube_api_key: Union[str, None] = None):
                 "url": "https://youtube.com/watch?v=" + video["id"]["videoId"],
             }
 
+    print(f"Found {len(leetcode_id_to_video)} videos related to Leetcode problems.")
     with open("youtube.json", "w") as f:
         json.dump(leetcode_id_to_video, f, indent=4, sort_keys=True)
 

@@ -90,6 +90,10 @@ def format_anki(url: str, slug: str, data: dict):
     if data["tags"]:
         problem += format_list_element("Tags", [tag["name"] for tag in data["tags"]])
 
+    if data["difficulty"]:
+        problem += "<strong>Difficulty:</strong><br>"
+        problem += f"<p>{data['difficulty']}</p>"
+
     problem += ";"
 
     if str(data["id"]) in LEETCODE_TO_NEETCODE:
@@ -161,6 +165,7 @@ def format_excel(url: str, slug: str, data: dict) -> List[Union[str, date]]:
     row = []
     row.append(data["id"])
     row.append(data["title"])
+    row.append(data["difficulty"])
     row.append(get_url(url))
     row.append(date.today())
     row.append(", ".join([tag["name"] for tag in data["tags"]]))

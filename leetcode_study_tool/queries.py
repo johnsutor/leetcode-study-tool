@@ -177,6 +177,7 @@ def get_data(
         session = generate_session()
 
     title = query("title", slug, session)["question"]["title"]
+    difficulty = query("title", slug, session)["question"]["difficulty"]
     content = query("content", slug, session)["question"]["content"]
     id = query("title", slug, session)["question"]["questionId"]
     tags = query("tags", slug, session)["question"]["topicTags"]
@@ -188,6 +189,7 @@ def get_data(
     results = {
         "title": title,
         "content": content,
+        "difficulty": difficulty,
         "id": id,
         "tags": tags,
         "companies": companies,
