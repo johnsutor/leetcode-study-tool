@@ -103,6 +103,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Balanced Binary Tree - Leetcode 110 - Python",
         "url": "https://youtube.com/watch?v=QfJsau0ItOY",
     },
+    "112": {
+        "title": "Path Sum - Leetcode 112 - Python",
+        "url": "https://youtube.com/watch?v=LSKQyOz_P8I",
+    },
     "1129": {
         "title": "Shortest Path with Alternating Colors - Leetcode 1129 - Python",
         "url": "https://youtube.com/watch?v=69rcy6lb-HQ",
@@ -335,6 +339,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Longest Happy String - Leetcode 1405 - Python",
         "url": "https://youtube.com/watch?v=8u-H6O_XQKE",
     },
+    "1406": {
+        "title": "Stone Game III - Leetcode 1406 - Python",
+        "url": "https://youtube.com/watch?v=HsLG5QW9CFQ",
+    },
     "141": {
         "title": "Linked List Cycle - Floyd&#39;s Tortoise and Hare - Leetcode 141 - Python",
         "url": "https://youtube.com/watch?v=gBTe7lFR3vc",
@@ -407,6 +415,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Insertion Sort List - Leetcode 147 - Python",
         "url": "https://youtube.com/watch?v=Kk6mXAzqX3Y",
     },
+    "1470": {
+        "title": "Shuffle the Array (Constant Space) - Leetcode 1470 - Python",
+        "url": "https://youtube.com/watch?v=IvIKD_EU8BY",
+    },
     "1472": {
         "title": "Design Browser History - Leetcode 1472 - Python",
         "url": "https://youtube.com/watch?v=i1G-kKnBu8k",
@@ -463,6 +475,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Find Minimum in Rotated Sorted Array - Binary Search - Leetcode 153 - Python",
         "url": "https://youtube.com/watch?v=nIVW4P8b1VA",
     },
+    "1531": {
+        "title": "String Compression II - Leetcode 1531 - Python",
+        "url": "https://youtube.com/watch?v=ISIG3o-Xofg",
+    },
     "1544": {
         "title": "Make The String Great - Leetcode 1544 - Python",
         "url": "https://youtube.com/watch?v=10tBWNjzvtw",
@@ -515,6 +531,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Even Odd Tree - Leetcode 1609 - Python",
         "url": "https://youtube.com/watch?v=FkNWN1Fj_TY",
     },
+    "1611": {
+        "title": "Minimum Number of One Bit Operations to Make Integers Zero - Leetcode 1611 - Python",
+        "url": "https://youtube.com/watch?v=yRI18_MaG7k",
+    },
     "1614": {
         "title": "Maximum Nesting Depth of the Parentheses - Leetcode 1614 - Python",
         "url": "https://youtube.com/watch?v=FiQFJvCvWK4",
@@ -559,6 +579,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Check If Two String Arrays are Equivalent - Leetcode 1662 - Python",
         "url": "https://youtube.com/watch?v=ejBwc2oE7ck",
     },
+    "1669": {
+        "title": "Merge in Between Linked Lists - Leetcode 1669 - Python",
+        "url": "https://youtube.com/watch?v=pI775VutBxg",
+    },
     "167": {
         "title": "TWO SUM II - Amazon Coding Interview Question - Leetcode 167 - Python",
         "url": "https://youtube.com/watch?v=cQ1Oz4ckceM",
@@ -570,6 +594,14 @@ LEETCODE_TO_NEETCODE = {
     "168": {
         "title": "Excel Sheet Column Title - Leetcode 168 - Python",
         "url": "https://youtube.com/watch?v=X_vJDpCCuoA",
+    },
+    "1685": {
+        "title": "Sum of Absolute Differences in a Sorted Array - Leetcode 1685 - Python",
+        "url": "https://youtube.com/watch?v=3nkc-e66JmA",
+    },
+    "1688": {
+        "title": "Count of Matches in Tournament - Leetcode 1688 - Python",
+        "url": "https://youtube.com/watch?v=lslcc0tumpU",
     },
     "169": {
         "title": "Majority Element - Leetcode 169 - Python",
@@ -583,6 +615,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Number of Students Unable to Eat Lunch - Leetcode 1700 - Python",
         "url": "https://youtube.com/watch?v=d_cvtFwnOZg",
     },
+    "1716": {
+        "title": "Calculate Money in Leetcode Bank - Leetcode 1716 - Python",
+        "url": "https://youtube.com/watch?v=tKK7gvPCQfs",
+    },
     "1721": {
         "title": "Swapping Nodes in a Linked List - Leetcode 1721 - Python",
         "url": "https://youtube.com/watch?v=4LsrgMyQIjQ",
@@ -595,6 +631,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Binary Search Tree Iterator - Leetcode 173 - Python",
         "url": "https://youtube.com/watch?v=RXy5RzGF5wo",
     },
+    "1750": {
+        "title": "Minimum Length of String after Deleting Similar Ends - Leetcode 1750 - Python",
+        "url": "https://youtube.com/watch?v=318hrWVr_5U",
+    },
     "1758": {
         "title": "Minimum Changes To Make Alternating Binary String - Leetcode 1758 - Python",
         "url": "https://youtube.com/watch?v=9vAQdmVU2ds",
@@ -606,6 +646,14 @@ LEETCODE_TO_NEETCODE = {
     "179": {
         "title": "Largest Number - Leetcode 179 - Python",
         "url": "https://youtube.com/watch?v=WDx6Y4i4xJ8",
+    },
+    "1793": {
+        "title": "Maximum Score of a Good Subarray - Leetcode 1793 - Python",
+        "url": "https://youtube.com/watch?v=_K7oyQlAjv4",
+    },
+    "1799": {
+        "title": "Maximize Score after N Operations - Leetcode 1799 - Python",
+        "url": "https://youtube.com/watch?v=RRQVDqp5RSE",
     },
     "18": {
         "title": "4Sum - Leetcode 18 - Python",
@@ -706,6 +754,10 @@ LEETCODE_TO_NEETCODE = {
     "191": {
         "title": "Number of 1 Bits - Leetcode 191 - Python",
         "url": "https://youtube.com/watch?v=5Km3utixwZs",
+    },
+    "1911": {
+        "title": "Maximum Alternating Subsequence Sum - Dynamic Programming - Leetcode 1911 - Python",
+        "url": "https://youtube.com/watch?v=4v42XOuU1XA",
     },
     "1921": {
         "title": "Eliminate Maximum Number of Monsters - Leetcode 1921 -  Weekly Contest 248 - Python",
@@ -855,6 +907,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Number of Ways to Divide a Long Corridor - Leetcode 2147 - Python",
         "url": "https://youtube.com/watch?v=YOTjCd4Eyhc",
     },
+    "2149": {
+        "title": "Rearrange Array Elements by Sign - Leetcode 2149 - Python",
+        "url": "https://youtube.com/watch?v=SoPmcGzz9-E",
+    },
     "215": {
         "title": "Kth Largest Element in an Array - Quick Select - Leetcode 215 - Python",
         "url": "https://youtube.com/watch?v=XEmy13g1Qxc",
@@ -886,6 +942,10 @@ LEETCODE_TO_NEETCODE = {
     "225": {
         "title": "Implement Stack using Queues - Leetcode 225 - Python",
         "url": "https://youtube.com/watch?v=rW4vm0-DLYc",
+    },
+    "2251": {
+        "title": "Number of Flowers in Full Bloom - Leetcode 2251 - Python",
+        "url": "https://youtube.com/watch?v=zY3Uty9IwvY",
     },
     "226": {
         "title": "Invert Binary Tree - Depth First Search - Leetcode 226",
@@ -935,6 +995,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Design a Food Rating System - Leetcode 2353 - Python",
         "url": "https://youtube.com/watch?v=Ikp8SgbgbEo",
     },
+    "2359": {
+        "title": "Find Closest Node to Given Two Nodes - Leetcode 2359 - Python",
+        "url": "https://youtube.com/watch?v=AZA8orksO4w",
+    },
     "2370": {
         "title": "Longest Ideal Subsequence - Leetcode 2370 - Python",
         "url": "https://youtube.com/watch?v=gR1E2oLQYSY",
@@ -956,8 +1020,8 @@ LEETCODE_TO_NEETCODE = {
         "url": "https://youtube.com/watch?v=pRyFZIaKegA",
     },
     "24": {
-        "title": "Swap Nodes in Pairs - Apple Interview Question - Leetcode 24",
-        "url": "https://youtube.com/watch?v=o811TZLAWOo",
+        "title": "Leetcode 24 Hour Challenge (while learning Golang)",
+        "url": "https://youtube.com/watch?v=a3Aep-SygUA",
     },
     "2402": {
         "title": "Meeting Rooms III - Leetcode 2402 - Python",
@@ -1035,6 +1099,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Minimize the Maximum Difference of Pairs - Leetcode 2616 - Python",
         "url": "https://youtube.com/watch?v=lf1Pxg7IrzQ",
     },
+    "2618": {
+        "title": "Check if Object Instance of Class - Leetcode 2618 - JavaScript 30-Day Challenge",
+        "url": "https://youtube.com/watch?v=meIo-Q07Ba8",
+    },
     "2619": {
         "title": "Array Prototype Last - Leetcode 2619 - JavaScript 30-Day Challenge",
         "url": "https://youtube.com/watch?v=3JdtfMBrUqc",
@@ -1087,6 +1155,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Curry - Leetcode 2632 - JavaScript 30-Day Challenge",
         "url": "https://youtube.com/watch?v=pi4kqMWQXxA",
     },
+    "2633": {
+        "title": "Convert Object to JSON String - Leetcode 2633 - JavaScript 30-Day Challenge",
+        "url": "https://youtube.com/watch?v=f94fUbHU-FY",
+    },
     "2634": {
         "title": "Filter Elements from Array (Transforms) - Leetcode 2634 - JavaScript 30-Day Challenge",
         "url": "https://youtube.com/watch?v=w1o81gbEEJU",
@@ -1102,6 +1174,10 @@ LEETCODE_TO_NEETCODE = {
     "2637": {
         "title": "Promise Time Limit - Leetcode 2637 - JavaScript 30-Day Challenge",
         "url": "https://youtube.com/watch?v=hfH57rdZhOk",
+    },
+    "2648": {
+        "title": "Generate Fibonacci Sequence - Leetcode 2648 - JavaScript 30-Day Challenge",
+        "url": "https://youtube.com/watch?v=T643rQ70Jlk",
     },
     "2649": {
         "title": "Nested Array Generator - Leetcode 2649 - JavaScript 30-Day Challenge",
@@ -1139,6 +1215,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Alien Dictionary - Topological Sort - Leetcode 269 - Python",
         "url": "https://youtube.com/watch?v=6kTZYvNNyps",
     },
+    "2693": {
+        "title": "Call Function with Custom Context - Leetcode 2693 - JavaScript 30-Day Challenge",
+        "url": "https://youtube.com/watch?v=du_GH-Ooa8E",
+    },
     "2694": {
         "title": "Event Emitter - Leetcode 2694 - JavaScript 30-Day Challenge",
         "url": "https://youtube.com/watch?v=M69bjWFarU0",
@@ -1163,6 +1243,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Extra Characters in a String - Leetcode 2707 - Python",
         "url": "https://youtube.com/watch?v=ONstwO1cD7c",
     },
+    "2709": {
+        "title": "Greatest Common Divisor Traversal - Leetcode 2709 - Python",
+        "url": "https://youtube.com/watch?v=jZ-RVp5CVYY",
+    },
     "271": {
         "title": "Encode and Decode Strings - Leetcode 271 - Python",
         "url": "https://youtube.com/watch?v=B1k_sxOSgv8",
@@ -1179,10 +1263,6 @@ LEETCODE_TO_NEETCODE = {
         "title": "Knuth\u2013Morris\u2013Pratt KMP - Find the Index of the First Occurrence in a String - Leetcode 28 - Python",
         "url": "https://youtube.com/watch?v=JoF0Z7nVSrA",
     },
-    "280": {
-        "title": "Wiggle Sort - Leetcode 280 - Python",
-        "url": "https://youtube.com/watch?v=vGsyTE4s34w",
-    },
     "2812": {
         "title": "Find the Safest Path in a Grid - Leetcode 2812 - Python",
         "url": "https://youtube.com/watch?v=-5mQcNiVWTs",
@@ -1190,6 +1270,10 @@ LEETCODE_TO_NEETCODE = {
     "283": {
         "title": "Move Zeroes - Leetcode 283 - Python",
         "url": "https://youtube.com/watch?v=aayNRwUN3Do",
+    },
+    "2864": {
+        "title": "Maximum Odd Binary Number - Leetcode 2864 - Python",
+        "url": "https://youtube.com/watch?v=EUKLOAv4-IQ",
     },
     "287": {
         "title": "Find the Duplicate Number - Floyd&#39;s Cycle Detection - Leetcode 287 - Python",
@@ -1223,6 +1307,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Divide Array Into Arrays With Max Difference - Leetcode 2966 - Python",
         "url": "https://youtube.com/watch?v=XleOio1oJeo",
     },
+    "297": {
+        "title": "Serialize and Deserialize Binary Tree - Preorder Traversal - Leetcode 297 - Python",
+        "url": "https://youtube.com/watch?v=u4JAi2JJhI8",
+    },
     "2971": {
         "title": "Find Polygon with the Largest Perimeter - Leetcode 2971 - Python",
         "url": "https://youtube.com/watch?v=Yk9Mor-Y488",
@@ -1254,10 +1342,6 @@ LEETCODE_TO_NEETCODE = {
     "310": {
         "title": "Minimum Height Trees - Leetcode 310 - Python",
         "url": "https://youtube.com/watch?v=wQGQnyv_9hI",
-    },
-    "3110": {
-        "title": "Score of a String - Leetcode 3110 - Python",
-        "url": "https://youtube.com/watch?v=imbrLFL20tQ",
     },
     "312": {
         "title": "Burst Baloons - Dynamic Programming - Leetcode 312 - Python",
@@ -1306,6 +1390,10 @@ LEETCODE_TO_NEETCODE = {
     "344": {
         "title": "Reverse String - 3 Ways - Leetcode 344 - Python",
         "url": "https://youtube.com/watch?v=_d0T_2Lk2qA",
+    },
+    "347": {
+        "title": "Top K Frequent Elements - Bucket Sort - Leetcode 347 - Python",
+        "url": "https://youtube.com/watch?v=YPTqKIgVk-k",
     },
     "349": {
         "title": "Intersection of Two Arrays - Leetcode 349 - Python",
@@ -1591,6 +1679,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Brick Wall - Leetcode 554 - Python",
         "url": "https://youtube.com/watch?v=Kkmv2h48ekw",
     },
+    "557": {
+        "title": "Reverse Words in a String III - Leetcode 557 - Python",
+        "url": "https://youtube.com/watch?v=7kUEwiwwnlA",
+    },
     "56": {
         "title": "Merge Intervals - Sorting - Leetcode 56",
         "url": "https://youtube.com/watch?v=44H3cEC2fFM",
@@ -1611,6 +1703,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Subtree of Another Tree - Leetcode 572 - Python",
         "url": "https://youtube.com/watch?v=E36O5SWp-LE",
     },
+    "576": {
+        "title": "Out of Boundary Paths - Leetcode 576 - Python",
+        "url": "https://youtube.com/watch?v=Bg5CLRqtNmk",
+    },
     "58": {
         "title": "Length of Last Word - Leetcode 58 - Python",
         "url": "https://youtube.com/watch?v=KT9rltZTybQ",
@@ -1626,6 +1722,10 @@ LEETCODE_TO_NEETCODE = {
     "605": {
         "title": "Can Place Flowers - Leetcode 605 - Python",
         "url": "https://youtube.com/watch?v=ZGxqqjljpUI",
+    },
+    "606": {
+        "title": "Construct String from Binary Tree - Leetcode 606 - Python",
+        "url": "https://youtube.com/watch?v=b1WpYxnuebQ",
     },
     "61": {
         "title": "Rotate List - Linked List - Leetcode 61 - Python",
@@ -1727,6 +1827,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Sqrt(x) - Leetcode 69 - Python",
         "url": "https://youtube.com/watch?v=zdMhGxRWutQ",
     },
+    "691": {
+        "title": "Stickers to Spell Word - DP Memoization - Leetcode 691 - Python",
+        "url": "https://youtube.com/watch?v=hsomLb6mUdI",
+    },
     "695": {
         "title": "Max Area of Island - Leetcode 695 - Python",
         "url": "https://youtube.com/watch?v=iJGr1OtmH0c",
@@ -1774,6 +1878,10 @@ LEETCODE_TO_NEETCODE = {
     "713": {
         "title": "Subarray Product Less Than K - Leetcode 713 - Python",
         "url": "https://youtube.com/watch?v=Cg6_nF7YIks",
+    },
+    "72": {
+        "title": "Edit Distance - Dynamic Programming - Leetcode 72 - Python",
+        "url": "https://youtube.com/watch?v=XYi2-LPrwm4",
     },
     "721": {
         "title": "Accounts Merge - Leetcode 721 - Python",
@@ -1935,6 +2043,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Stone Game - Leetcode 877 - Python",
         "url": "https://youtube.com/watch?v=uhgdXOlGYqE",
     },
+    "879": {
+        "title": "Profitable Schemes - Leetcode 879 - Python",
+        "url": "https://youtube.com/watch?v=CcLKQLKvOl8",
+    },
     "88": {
         "title": "Merge Sorted Array - Leetcode 88 - Python",
         "url": "https://youtube.com/watch?v=P1Ic85RarKY",
@@ -2055,6 +2167,10 @@ LEETCODE_TO_NEETCODE = {
         "title": "Check Completeness of a Binary Tree - Leetcode 958 - Python",
         "url": "https://youtube.com/watch?v=olbiZ-EOSig",
     },
+    "97": {
+        "title": "Interleaving Strings - Dynamic Programming - Leetcode 97 - Python",
+        "url": "https://youtube.com/watch?v=3Rw3p9LrgvE",
+    },
     "973": {
         "title": "K Closest Points to Origin - Heap / Priority Queue - Leetcode 973 - Python",
         "url": "https://youtube.com/watch?v=rI2EBUEMfTk",
@@ -2086,6 +2202,10 @@ LEETCODE_TO_NEETCODE = {
     "988": {
         "title": "Smallest String Starting From Leaf - Leetcode 988 - Python",
         "url": "https://youtube.com/watch?v=UvdWfxQ_ZDs",
+    },
+    "989": {
+        "title": "Add to Array-Form of Integer - Leetcode 989 - Python",
+        "url": "https://youtube.com/watch?v=eBTZQt1TWfk",
     },
     "992": {
         "title": "Subarrays with K Different Integers - Leetcode 992 - Python",

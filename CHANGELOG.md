@@ -1,11 +1,16 @@
 # Changelog 
 
-## 1.2.2
+## 1.3.3
+- Fix  issue in querying NeetCode videos 
+- Remove support for Python 3.7 (Cannot properly test for Mac)
+- Add support for Python 3.12 and 3.13
+
+## 1.3.2
 - Add difficulty
 - Add color for difficulty in excel 
 - Query more Neetcode videos and update video dictionary
 
-## 1.2.1 
+## 1.3.1
 - Fixed issue with Neetcode titles including semicolons, resulting in ill-formatted Anki cards 
 
 ## 1.2.0

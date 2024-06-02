@@ -27,8 +27,8 @@ jobs:
         pip install -r requirements.txt
     - name: Examine formatting with black 
       run: |
-        pip install black
-        ruff . --check
+        pip install ruff
+        ruff check .
     - name: Examine import ordering with isort 
       run: |
         pip install isort
