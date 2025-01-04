@@ -1,5 +1,9 @@
 # Changelog 
 
+## 1.3.4
+- Add Neetcode 250 
+- Fix linting error 
+
 ## 1.3.3
 - Fix  issue in querying NeetCode videos 
 - Remove support for Python 3.7 (Cannot properly test for Mac)

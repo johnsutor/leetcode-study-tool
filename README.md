@@ -32,7 +32,7 @@ options:
                         problem(s) for. (default: None)
   --file FILE, -f FILE  The file containing the URL(s) or slug(s) of the LeetCode question(s)
                         to generate problem(s) for. (default: None)
-  --preset {blind_75,grind_75,grind_169,neetcode_150,neetcode_all}, -p {blind_75,grind_75,grind_169,neetcode_150,neetcode_all}
+  --preset {blind_75,grind_75,grind_169,neetcode_150,neetcode_all}, -p {blind_75,grind_75,grind_169,neetcode_150,neetcode_250,neetcode_all}
                         The preset to use to generate problem(s) for. (default: None)
   --format {anki,excel}, -F {anki,excel}
                         The format to save the Leetcode problem(s) in. (default: anki)

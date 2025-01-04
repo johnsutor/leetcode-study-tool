@@ -113,7 +113,7 @@ def save_excel(problems: List[Union[List[Union[str, date]], None]], file: str) -
     for i, problem in enumerate(problems, start=1):
         if problem:
             for j, line in enumerate(problem):
-                if type(line) == date and j == 3:
+                if type(line) is date and j == 3:
                     worksheet.write_datetime(i, j, line, date_format)
                 else:
                     worksheet.write(i, j, line)

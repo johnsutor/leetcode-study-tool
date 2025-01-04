@@ -38,6 +38,7 @@ def main(args: argparse.Namespace):
             ):
                 problems.append(url.geturl().decode())
 
+    print("Found {} problems".format(len(problems)))
     with open(args.output, "a") as f:
         json.dump(problems, f)
 
