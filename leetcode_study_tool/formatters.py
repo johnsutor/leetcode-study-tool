@@ -99,7 +99,7 @@ def format_anki(url: str, slug: str, data: dict):
     if str(data["id"]) in LEETCODE_TO_NEETCODE:
         neetcode = LEETCODE_TO_NEETCODE[str(data["id"])]
         problem += "<strong>NeetCode Solution:</strong><br>"
-        problem += f"<a href=\"{neetcode['url']}\">{neetcode['title']}</a></li><br><br>"
+        problem += f"<a href=\"{neetcode['url']}\">{neetcode['title']}</a><br><br>"
 
     if data["solutions"]:
         problem += format_list_element(

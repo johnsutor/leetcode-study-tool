@@ -9,15 +9,14 @@ all:
 	$(MAKE) type-check
 
 format:
-	ruff format .
-	isort --profile black .
+	python -m ruff format ./leetcode_study_tool
 
 format-check:
-	ruff check .
-	isort --check-only --profile black .
+	python -m ruff check ./leetcode_study_tool 
+	python -m ruff format ./leetcode_study_tool --check
 
 test:
 	pytest tests/ --cov --cov-fail-under=85
 
 type-check:
-	mypy src
+	python -m mypy ./leetcode_study_tool

@@ -5,7 +5,7 @@
 [![PyPi](https://img.shields.io/pypi/v/leetcode-study-tool)](https://pypi.org/project/leetcode-study-tool/)
 ![contributions welcome](https://img.shields.io/badge/contributions-welcome-blue.svg?style=flat)
 
-![Leetcode Study Tool Diagram](./static/leetcode_study_tool_diagram.png)
+![Leetcode Study Tool Diagram](https://github.com/johnsutor/leetcode-study-tool/raw/main/static/leetcode_study_tool_diagram.png)
 
 This package lets you get grokking as quickly as possible with Leetcode. It provides a command-line tool for interracting with Leetcode to create either an Excel file or Anki flashcards for study. Currently, this tool supports taking in a list of leetcode question slugs or URLs or popular study sets (including the [Blind 75](https://www.teamblind.com/post/New-Year-Gift---Curated-List-of-Top-75-LeetCode-Questions-to-Save-Your-Time-OaM1orEU), [Grind 75](https://www.techinterviewhandbook.org/grind75), and [Neetcode 150](https://neetcode.io/practice)). 
 
@@ -19,20 +19,16 @@ $ pip install leetcode-study-tool
 
 ## 💻 Usage 
 ```shell
-usage: leetcode-study-tool [-h]
-                           (--url URL | --file FILE | --preset {blind_75,grind_75,grind_169,neetcode_150,neetcode_all})
-                           [--format {anki,excel}] [--csrf CSRF] [--output OUTPUT]
-                           [--language LANGUAGE]
+usage: leetcode-study-tool [-h] (--url URL | --file FILE | --preset {blind_75,grind_75,grind_169,neetcode_150,neetcode_250,neetcode_all}) [--format {anki,excel}]
+                           [--csrf CSRF] [--output OUTPUT] [--language LANGUAGE]
 
 Generates problems from LeetCode questions in a desired format.
 
 options:
   -h, --help            show this help message and exit
-  --url URL, -u URL     The URL(s) or slug(s) of the LeetCode question(s) to generate
-                        problem(s) for. (default: None)
-  --file FILE, -f FILE  The file containing the URL(s) or slug(s) of the LeetCode question(s)
-                        to generate problem(s) for. (default: None)
-  --preset {blind_75,grind_75,grind_169,neetcode_150,neetcode_all}, -p {blind_75,grind_75,grind_169,neetcode_150,neetcode_250,neetcode_all}
+  --url URL, -u URL     The URL(s) or slug(s) of the LeetCode question(s) to generate problem(s) for. (default: None)
+  --file FILE, -f FILE  The file containing the URL(s) or slug(s) of the LeetCode question(s) to generate problem(s) for. (default: None)
+  --preset {blind_75,grind_75,grind_169,neetcode_150,neetcode_250,neetcode_all}, -p {blind_75,grind_75,grind_169,neetcode_150,neetcode_250,neetcode_all}
                         The preset to use to generate problem(s) for. (default: None)
   --format {anki,excel}, -F {anki,excel}
                         The format to save the Leetcode problem(s) in. (default: anki)
@@ -78,11 +74,12 @@ When generating an Excel output, the resulting questions are saved in an `.xlsx`
 - [X] Add support for exporting to an excel sheet
 - [X] Add support for showing neetcode solutions on the back of the card as a 
 - [X] Add support for getting the difficulty of questions 
+- [ ] Add support for Jinja templating formatters 
+- [ ] Add NeetCode shorts 
 - [ ] Add support for fetching premium questions via authentification
 - [ ] Add support for importing cards into Quizlet
 - [ ] Add support for fetching questions by topic or tag 
 link
-- [ ] Allow for the definition of custom formatters and outputs (including which fields are included or excluded)
 - [ ] Reach 90% test coverage
 
 ## 🔎 Other Usefull Stuff

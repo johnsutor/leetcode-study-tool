@@ -134,7 +134,7 @@ def query(
     requests.exceptions.HTTPError
         If the response from the LeetCode GraphQL API is not 200.
     """
-    assert content in MAPPINGS.keys(), f"Invalid query content: {content}"
+    assert content in MAPPINGS, f"Invalid query content: {content}"
     if not session:
         session = generate_session()
 
@@ -146,7 +146,7 @@ def query(
         },
     )
     if response.status_code == 200:
-        return json.loads(response.content.decode("utf-8")).get("data")
+        return dict(json.loads(response.content.decode("utf-8")).get("data"))
     else:
         raise requests.exceptions.HTTPError(
             f"LeetCode GraphQL API returned {response.status_code}"

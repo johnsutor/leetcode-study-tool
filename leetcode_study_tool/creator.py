@@ -124,4 +124,4 @@ class ProblemsCreator:
 
         data = {k: self._sanitize(v) for k, v in data.items()}
 
-        return FORMAT_MAP[self.format](url, slug, data)
+        return FORMAT_MAP[self.format](url, slug, data)  # type: ignore
