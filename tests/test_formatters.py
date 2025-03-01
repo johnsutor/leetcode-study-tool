@@ -20,27 +20,28 @@ class TestFormatters(unittest.TestCase):
         self, anki_html: str, problem_slug: str, problem_data: Dict[Any, Any]
     ):
         """
-        Instead of comparing exact strings, verify the structure and key components
-        of the Anki card HTML.
+        Verify the structure and key components of the Anki card HTML.
+        For tags, ensure they appear after the second semicolon.
         """
         self.assertTrue(f"https://leetcode.com/problems/{problem_slug}" in anki_html)
-
         self.assertTrue(f'<p>{problem_data["difficulty"]}</p>' in anki_html)
-
-        for tag in problem_data["tags"]:
-            self.assertTrue(tag["name"] in anki_html)
+        
+        semicolon_index = anki_html.rfind(";")
+        for tag in problem_data.get("tags", []):
+            self.assertIn(
+                tag["slug"], anki_html[semicolon_index:],
+                f"Tag {tag['name']} should appear after the second semicolon"
+            )
 
         self.assertRegex(anki_html, r"<strong>LeetCode User Solutions:</strong>")
-
         solution_links = re.findall(
             r"https://leetcode\.com/problems/[^/]+/solutions/\d+/1/", anki_html
         )
         self.assertGreater(
             len(solution_links), 0, "Should have at least one solution link"
         )
-
         if problem_data.get("neetcode_video_id"):
-            self.assertTrue("youtube.com/watch?" in anki_html)
+            self.assertIn("youtube.com/watch?", anki_html)
 
     def test_format_solution_link(self):
         self.assertEqual(
@@ -115,9 +116,12 @@ class TestFormatters(unittest.TestCase):
         )
         
         self.assertIn("Test Problem", rendered)
-        self.assertIn("Array", rendered)
         self.assertIn("Medium", rendered)
         self.assertIn("solutions/12345/1/", rendered)
+
+        semicolon_index = rendered.rfind(";")
+        self.assertIn("array", rendered[semicolon_index:],
+                      "Tag 'Array' should appear only after the second semicolon")
 
     def test_render_custom_template(self):
         """Test rendering with a custom template file"""

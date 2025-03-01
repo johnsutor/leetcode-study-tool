@@ -12,15 +12,6 @@
 </ul>
 {% endif %}
 
-{% if data.tags %}
-<strong>Tags:</strong><br>
-<ul>
-    {% for tag in data.tags %}
-    <li>{{ tag.name }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-
 {% if data.difficulty %}
 <strong>Difficulty:</strong><br>
 <p>{{ data.difficulty }}</p>
@@ -34,7 +25,7 @@
 {% endif %}
 
 {% if data.neetcode_solution %}
-<strong>NeetCode Code Solution ({{ data.language|default('') }}):</strong><br>
+<strong>Code Solution ({{ data.language|default('') }}):</strong><br>
 <pre><code>{{ data.neetcode_solution }}</code></pre>
 {% endif %}
 

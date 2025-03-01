@@ -84,6 +84,7 @@ def generate_parser() -> argparse.ArgumentParser:
         "-l",
         type=str,
         help="The language to generate problem(s) for.",
+        default="python",
     )
 
     parser.add_argument(

@@ -94,7 +94,7 @@ def format_anki(
     """
     neetcode = LEETCODE_TO_NEETCODE.get(str(data["id"]))
 
-    return render_template(
+    rendered = render_template(
         template_path,
         "anki.html.j2",
         url=get_url(url),
@@ -102,6 +102,10 @@ def format_anki(
         data=data,
         neetcode=neetcode,
     )
+    rendered = rendered.replace("\n", "<br>")
+    rendered = rendered.replace("\t", "\u00a0\u00a0\u00a0\u00a0")
+    rendered = " ".join(rendered.split())
+    return rendered
 
 
 def format_quizlet(url: str, slug: str, data: dict):
@@ -158,6 +162,7 @@ def format_excel(url: str, slug: str, data: dict) -> List[Union[str, date]]:
         row.append(neetcode["url"])
     else:
         row.append("")
+    row.append(data.get("neetcode_solution", ""))
     row.append(
         "\n".join(
             [
