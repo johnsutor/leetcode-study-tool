@@ -1,7 +1,7 @@
 import json
 import re
 from functools import lru_cache
-from typing import Union
+from typing import Optional, Union
 from urllib.parse import urlparse
 
 import requests
@@ -22,6 +22,26 @@ MAPPINGS = {
     "companies": QUESTION_DETAIL_COMPANY_TAGS,
     "solutions": COMMUNITY_SOLUTIONS,
 }
+
+NEETCODE_LANGUAGES = [
+    "c",
+    "cpp",
+    "csharp",
+    "dart",
+    "go",
+    "java",
+    "javascript",
+    "kotlin",
+    "python",
+    "ruby",
+    "rust",
+    "scala",
+    "swift",
+    "typescript",
+]
+NEETCODE_BASE_URL = (
+    "https://raw.githubusercontent.com/neetcode-gh/leetcode/refs/heads/main"
+)
 
 
 def get_slug(input: str) -> str:
@@ -148,9 +168,71 @@ def query(
     if response.status_code == 200:
         return dict(json.loads(response.content.decode("utf-8")).get("data"))
     else:
-        raise requests.exceptions.HTTPError(
+        response = requests.Response()
+        response.status_code = 500
+        error = requests.exceptions.HTTPError(
             f"LeetCode GraphQL API returned {response.status_code}"
         )
+        error.response = response
+        raise error
+
+
+def get_neetcode_solution(
+    problem_id: str, title: str, language: str = "python"
+) -> Optional[str]:
+    """
+    Get the solution for a given problem from the NeetCode GitHub repository.
+
+    Arguments
+    ---------
+    problem_id : str
+        The ID of the problem to get the solution for.
+    title : str
+        The title of the problem to get the solution for.
+    language : str
+        The language to get the solution for. Must be one of the supported languages.
+        Defaults to 'python'.
+
+    Returns
+    -------
+    Optional[str]
+        The solution code if found, None otherwise.
+    """
+    if language not in NEETCODE_LANGUAGES:
+        return None
+
+    padded_id = problem_id.zfill(4)
+
+    kebab_title = re.sub(r"[^a-zA-Z0-9\s]", "", title).lower().replace(" ", "-")
+
+    file_name = f"{padded_id}-{kebab_title}"
+
+    url = f"{NEETCODE_BASE_URL}/{language}/{file_name}"
+
+    extensions = {
+        "c": ".c",
+        "cpp": ".cpp",
+        "csharp": ".cs",
+        "dart": ".dart",
+        "go": ".go",
+        "java": ".java",
+        "javascript": ".js",
+        "kotlin": ".kt",
+        "python": ".py",
+        "ruby": ".rb",
+        "rust": ".rs",
+        "scala": ".scala",
+        "swift": ".swift",
+        "typescript": ".ts",
+    }
+    url += extensions.get(language, "")
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.text
+    except requests.exceptions.RequestException:
+        return None
 
 
 def get_data(
@@ -186,6 +268,10 @@ def get_data(
         "solutions", slug, session, skip=0, first=10, languageTags=(language)
     )["questionSolutions"]["solutions"]
 
+    neetcode_solution = None
+    if language:
+        neetcode_solution = get_neetcode_solution(id, title, language)
+
     results = {
         "title": title,
         "content": content,
@@ -194,6 +280,7 @@ def get_data(
         "tags": tags,
         "companies": companies,
         "solutions": solutions,
+        "neetcode_solution": neetcode_solution,
     }
 
     return results

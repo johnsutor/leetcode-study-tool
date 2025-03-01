@@ -58,6 +58,13 @@ def generate_parser() -> argparse.ArgumentParser:
     )
 
     parser.add_argument(
+        "--template",
+        "-t",
+        type=str,
+        help="Path to a custom Jinja template file for rendering problems.",
+    )
+
+    parser.add_argument(
         "--csrf",
         "-c",
         type=str,
@@ -77,6 +84,14 @@ def generate_parser() -> argparse.ArgumentParser:
         "-l",
         type=str,
         help="The language to generate problem(s) for.",
+        default="python",
+    )
+
+    parser.add_argument(
+        "--include-code",
+        "-ic",
+        action="store_true",
+        help="Include solution code from NeetCode GitHub repository using the specified language.",
     )
 
     return parser

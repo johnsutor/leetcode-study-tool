@@ -10,7 +10,12 @@ from p_tqdm import p_map
 from leetcode_study_tool.formatters import FORMAT_MAP
 from leetcode_study_tool.outputs import SAVE_MAP
 from leetcode_study_tool.presets import PRESET_MAP
-from leetcode_study_tool.queries import generate_session, get_data, get_slug
+from leetcode_study_tool.queries import (
+    generate_session,
+    get_data,
+    get_neetcode_solution,
+    get_slug,
+)
 
 
 class ProblemsCreator:
@@ -19,9 +24,10 @@ class ProblemsCreator:
     """
 
     def __init__(self, args: Union[argparse.Namespace, dict]) -> None:
-        # Explicitly define for linting
         self.format = "anki"
         self.output = "output"
+        self.template = None
+        self.include_code = False
 
         args = vars(args)
         for key in args:
@@ -53,12 +59,6 @@ class ProblemsCreator:
         """
         problems = p_map(self._generate_problem, self.urls)
 
-        # with Pool() as pool:
-        #     problems = pool.map(
-        #         self._generate_problem,
-        #         self.urls,
-        #     )
-
         self._save_output(problems, self.output)
 
     def _sanitize(self, input: Union[str, list, None]) -> Union[str, list]:
@@ -82,8 +82,6 @@ class ProblemsCreator:
         if isinstance(input, list):
             return input
         input = html.unescape(input)
-        # input = input.replace(";", " ")
-        # input = input.replace("\n", " ")
         input = re.sub(r"[;\n\r]", " ", input)
         input = input.replace("</strong>", "</strong><br>")
         input = re.sub(r"(<br>){2,}", "<br>", input)
@@ -104,8 +102,6 @@ class ProblemsCreator:
         ---------
         url : str
             The URL of the question to generate a problem for.
-        language : str
-            The coding language to generate a problem for.
 
         Returns
         -------
@@ -118,10 +114,25 @@ class ProblemsCreator:
         slug = get_slug(url)
         try:
             data = get_data(slug, self.language, self.session)
+
+            if (
+                self.include_code
+                and self.language
+                and not data.get("neetcode_solution")
+            ):
+                github_solution = get_neetcode_solution(
+                    data["id"], data["title"], self.language
+                )
+                if github_solution:
+                    data["neetcode_solution"] = github_solution
+
         except Exception as e:
             print(f"Failed to generate problem for {url}: {e}")
             return None
 
         data = {k: self._sanitize(v) for k, v in data.items()}
 
-        return FORMAT_MAP[self.format](url, slug, data)  # type: ignore
+        if self.format == "anki":
+            return FORMAT_MAP[self.format](url, slug, data, self.template)  # type: ignore
+        else:
+            return FORMAT_MAP[self.format](url, slug, data)  # type: ignore

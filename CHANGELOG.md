@@ -1,4 +1,7 @@
 # Changelog 
+## 1.3.5
+- Add Jinja templates in favor over standard library for string formatting 
+- Add problems pulled from Neetcode solutions GitHub
 
 ## 1.3.4
 - Add Neetcode 250 

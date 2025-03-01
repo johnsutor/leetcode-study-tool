@@ -10,10 +10,11 @@ all:
 
 format:
 	python -m ruff format ./leetcode_study_tool
+	python -m ruff check ./leetcode_study_tool --fix
 
 format-check:
-	python -m ruff check ./leetcode_study_tool 
 	python -m ruff format ./leetcode_study_tool --check
+	python -m ruff check ./leetcode_study_tool 
 
 test:
 	pytest tests/ --cov --cov-fail-under=85
