@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "leetcode-study-tool"
-version = "1.3.4"
+version = "1.3.5"
 description = "A tool for studying Leetcode with Python"
 authors = [{name="John Sutor", email="johnsutor3@gmail.com" }]
 license = {file = "LICENSE.txt"}
@@ -12,7 +12,7 @@ readme = "README.md"
 keywords = ["leetcode", "leet", "study", "Anki"]
 classifiers=[
             # Development status
-            'Development Status :: 4 - Beta',
+            'Development Status :: 5 - Production/Stable',
 
             # Supported OS
             'Operating System :: Microsoft :: Windows',
@@ -37,7 +37,8 @@ classifiers=[
 dependencies = [
     "requests==2.32.3",
     "XlsxWriter==3.2.0",
-    "p-tqdm==1.4.2"
+    "p-tqdm==1.4.2",
+    "Jinja2==3.1.5"
 ]
 
 [project.optional-dependencies]

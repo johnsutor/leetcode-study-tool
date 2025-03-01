@@ -3,6 +3,9 @@ from datetime import date
 from textwrap import dedent
 from typing import Any, Dict
 import re
+import tempfile
+import os
+from unittest.mock import patch
 
 import leetcode_study_tool.formatters as formatters
 from leetcode_study_tool.queries import get_data, get_url
@@ -39,21 +42,6 @@ class TestFormatters(unittest.TestCase):
         if problem_data.get("neetcode_video_id"):
             self.assertTrue("youtube.com/watch?" in anki_html)
 
-    def test_format_list_element(self):
-        self.assertEqual(
-            dedent(
-                formatters.format_list_element("fake-title", ["fake-el-1", "fake-el-2"])
-            ),
-            dedent(
-                """
-            <strong>fake-title:</strong><br>
-            <ul>
-                <li>fake-el-1</li><li>fake-el-2</li>
-            </ul>
-            """
-            ),
-        )
-
     def test_format_solution_link(self):
         self.assertEqual(
             formatters.format_solution_link("fake-slug", "fake-solution-id"),
@@ -72,7 +60,7 @@ class TestFormatters(unittest.TestCase):
 
         self.assertAnkiCardStructure(formatted_anki, problem_slug, data)
 
-        self.assertTrue(formatted_anki.startswith("    <h1>"))
+        self.assertTrue(formatted_anki.startswith("<h1>"))  
         self.assertTrue("</ul>" in formatted_anki)
 
         self.assertEqual(
@@ -105,3 +93,121 @@ class TestFormatters(unittest.TestCase):
                 "https://youtube.com/watch?v=KLlXCFG5TnA",
             ],
         )
+
+    def test_render_template(self):
+        """Test the template rendering functionality"""
+        test_data = {
+            "id": "1",
+            "title": "Test Problem",
+            "content": "Test content",
+            "difficulty": "Medium",
+            "tags": [{"name": "Array", "slug": "array"}],
+            "solutions": [{"id": "12345"}]
+        }
+        
+        rendered = formatters.render_template(
+            None, 
+            "anki.html.j2", 
+            url="https://example.com",
+            slug="test-problem",
+            data=test_data,
+            neetcode=None
+        )
+        
+        self.assertIn("Test Problem", rendered)
+        self.assertIn("Array", rendered)
+        self.assertIn("Medium", rendered)
+        self.assertIn("solutions/12345/1/", rendered)
+
+    def test_render_custom_template(self):
+        """Test rendering with a custom template file"""
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.html.j2', delete=False) as tmp:
+            tmp.write("{{ data.title }} - {{ data.difficulty }} - {{ url }}")
+            tmp_path = tmp.name
+        
+        try:
+            test_data = {
+                "id": "1",
+                "title": "Test Problem",
+                "content": "Test content",
+                "difficulty": "Medium",
+                "tags": [{"name": "Array", "slug": "array"}],
+                "solutions": [{"id": "12345"}]
+            }
+            
+            rendered = formatters.render_template(
+                tmp_path,  
+                None,     
+                url="https://example.com",
+                data=test_data
+            )
+            
+            self.assertEqual("Test Problem - Medium - https://example.com", rendered)
+        finally:
+            os.unlink(tmp_path)
+
+    def test_render_template_error(self):
+        """Test error handling when no template is provided"""
+        with self.assertRaises(ValueError):
+            formatters.render_template(None, None)
+
+    def test_format_anki_custom_template(self):
+        """Test the Anki card formatter with custom template"""
+        problem_slug = "two-sum"
+        data = get_data(problem_slug)
+        
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.html.j2', delete=False) as tmp:
+            tmp.write("CUSTOM: {{ data.title }} - {{ data.difficulty }} - {{ url }}")
+            tmp_path = tmp.name
+        
+        try:
+            formatted_anki = formatters.format_anki(
+                get_url(problem_slug), problem_slug, data, template_path=tmp_path
+            )
+            
+            self.assertIn("CUSTOM:", formatted_anki)
+            self.assertIn("Two Sum", formatted_anki)
+            self.assertIn("Easy", formatted_anki)
+        finally:
+            os.unlink(tmp_path)
+
+    def test_format_anki_with_template(self):
+        """Test the Anki card formatter with templates"""
+        problem_slug = "two-sum"
+        data = get_data(problem_slug)
+        formatted_anki = formatters.format_anki(
+            get_url(problem_slug), problem_slug, data
+        )
+
+        self.assertIn("<h1>", formatted_anki)
+        self.assertIn("</h1>", formatted_anki)
+        
+        if data.get("companies"):
+            self.assertIn("Companies:", formatted_anki)
+        
+        if str(data["id"]) in formatters.LEETCODE_TO_NEETCODE:
+            self.assertIn("NeetCode Solution:", formatted_anki)
+
+    @patch("leetcode_study_tool.queries.get_data")
+    def test_format_anki_with_github_solution(self, mock_get_data):
+        """Test the Anki card formatter with a GitHub solution"""
+        problem_slug = "two-sum"
+        
+        mock_data = {
+            "id": "1",
+            "title": "Two Sum",
+            "difficulty": "Easy",
+            "content": "<p>Test content</p>",
+            "tags": [{"name": "Array", "slug": "array"}],
+            "companies": [{"name": "Amazon", "slug": "amazon"}],
+            "solutions": [{"id": "12345"}],
+            "neetcode_solution": "def two_sum(nums, target):\n    # GitHub solution code\n    pass"
+        }
+        mock_get_data.return_value = mock_data
+        
+        formatted_anki = formatters.format_anki(
+            get_url(problem_slug), problem_slug, mock_data
+        )
+        
+        self.assertIn("GitHub solution code", formatted_anki)
+        self.assertIn("def two_sum", formatted_anki)

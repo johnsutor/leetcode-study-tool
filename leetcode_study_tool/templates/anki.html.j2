@@ -1,0 +1,52 @@
+<h1>
+    <a href="{{ url }}">{{ data.id }}. {{ data.title }}</a>
+</h1>
+<p>{{ data.content }}</p>
+
+{% if data.companies %}
+<strong>Companies:</strong><br>
+<ul>
+    {% for company in data.companies %}
+    <li>{{ company.name }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if data.tags %}
+<strong>Tags:</strong><br>
+<ul>
+    {% for tag in data.tags %}
+    <li>{{ tag.name }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if data.difficulty %}
+<strong>Difficulty:</strong><br>
+<p>{{ data.difficulty }}</p>
+{% endif %}
+
+;
+
+{% if neetcode %}
+<strong>NeetCode Solution:</strong><br>
+<a href="{{ neetcode.url }}">{{ neetcode.title }}</a><br><br>
+{% endif %}
+
+{% if data.neetcode_solution %}
+<strong>NeetCode Code Solution ({{ data.language|default('') }}):</strong><br>
+<pre><code>{{ data.neetcode_solution }}</code></pre>
+{% endif %}
+
+{% if data.solutions %}
+<strong>LeetCode User Solutions:</strong><br>
+<ul>
+    {% for solution in data.solutions %}
+    <li><a href="{{ solution_url(slug, solution.id) }}">{{ solution_url(slug, solution.id) }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+;
+
+{% if data.tags %}{{ data.tags|map(attribute='slug')|map('lower')|join(' ') }}{% endif %}

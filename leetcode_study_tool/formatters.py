@@ -1,40 +1,16 @@
 from datetime import date
-from textwrap import dedent
-from typing import List, Union
+from pathlib import Path
+from typing import List, Optional, Union
 
-from leetcode_study_tool.leetcode_to_neetcode import LEETCODE_TO_NEETCODE  # fmt: skip
+from jinja2 import Environment, FileSystemLoader, select_autoescape
+
+from leetcode_study_tool.leetcode_to_neetcode import LEETCODE_TO_NEETCODE
 from leetcode_study_tool.queries import get_url
 
-
-def format_list_element(title: str, elements: List[str], is_link: bool = False) -> str:
-    """
-    formats an HTML list element for the given title and elements
-
-    Arguments
-    ---------
-    title : str
-        The title of the list element to format.
-    elements : List[str]
-        The elements of the list element to format.
-
-    Returns
-    -------
-    str
-        The formatted list element for the given title and data.
-    """
-    if is_link:
-        return f"""
-        <strong>{title}:</strong><br>
-        <ul>
-            {"".join([ f"<li><a href={item}>" +  item + "</a></li>" for item in elements])}
-        </ul>
-        """
-    return f"""
-    <strong>{title}:</strong><br>
-    <ul>
-        {"".join([ "<li>" +  item + "</li>" for item in elements])}
-    </ul>
-    """
+template_dir = Path(__file__).parent / "templates"
+env = Environment(
+    loader=FileSystemLoader(template_dir), autoescape=select_autoescape(["html", "xml"])
+)
 
 
 def format_solution_link(slug: str, solution_id: str) -> str:
@@ -56,9 +32,49 @@ def format_solution_link(slug: str, solution_id: str) -> str:
     return f"https://leetcode.com/problems/{slug}/solutions/{solution_id}/1/"
 
 
-def format_anki(url: str, slug: str, data: dict):
+def render_template(
+    template_path: Optional[str], template_name: Optional[str], **kwargs
+) -> str:
     """
-    formats an Anki problem for the given URL and data
+    Render a template with the given context
+
+    Arguments
+    ---------
+    template_path : Optional[str]
+        Path to a custom template file. If None, use built-in templates.
+    template_name : str
+        Name of the built-in template to use if template_path is None.
+    kwargs : dict
+        Template context variables.
+
+    Returns
+    -------
+    str
+        Rendered template content.
+    """
+    if not template_path and not template_name:
+        raise ValueError("Either template_path or template_name must be provided")
+    if template_path:
+        custom_dir = Path(template_path).parent
+        custom_file = Path(template_path).name
+        custom_env = Environment(
+            loader=FileSystemLoader(custom_dir),
+            autoescape=select_autoescape(["html", "xml"]),
+        )
+        template = custom_env.get_template(custom_file)
+    else:
+        assert template_name is not None
+        template = env.get_template(template_name)
+
+    kwargs["solution_url"] = format_solution_link
+    return template.render(**kwargs)
+
+
+def format_anki(
+    url: str, slug: str, data: dict, template_path: Optional[str] = None
+) -> str:
+    """
+    formats an Anki problem using Jinja template
 
     Arguments
     ---------
@@ -68,56 +84,24 @@ def format_anki(url: str, slug: str, data: dict):
         The slug of the question to format a problem for.
     data : dict
         The data of the question to format a problem for.
+    template_path : Optional[str]
+        Path to a custom template file. If None, use built-in templates.
 
     Returns
     -------
     str
-        The Anki problem for the given URL and data.
+        The formatted Anki problem.
     """
-    problem = f"""
-    <h1>
-        <a href=\"{get_url(url)}\">{data['id']}. {data['title']}</a>
-    </h1>
-    <p>
-        {data['content']}
-    <p>
-    """
-    if data["companies"]:
-        problem += format_list_element(
-            "Companies", [company["name"] for company in data["companies"]]
-        )
+    neetcode = LEETCODE_TO_NEETCODE.get(str(data["id"]))
 
-    if data["tags"]:
-        problem += format_list_element("Tags", [tag["name"] for tag in data["tags"]])
-
-    if data["difficulty"]:
-        problem += "<strong>Difficulty:</strong><br>"
-        problem += f"<p>{data['difficulty']}</p>"
-
-    problem += ";"
-
-    if str(data["id"]) in LEETCODE_TO_NEETCODE:
-        neetcode = LEETCODE_TO_NEETCODE[str(data["id"])]
-        problem += "<strong>NeetCode Solution:</strong><br>"
-        problem += f"<a href=\"{neetcode['url']}\">{neetcode['title']}</a><br><br>"
-
-    if data["solutions"]:
-        problem += format_list_element(
-            "LeetCode User Solutions",
-            [
-                format_solution_link(slug, solution["id"])
-                for solution in data["solutions"]
-            ],
-            is_link=True,
-        )
-
-    problem += ";"
-
-    problem += " ".join([tag["slug"].lower() for tag in data["tags"]])
-
-    # Makes code easier to read to remove at the end
-    problem = dedent(problem).replace("\n", "")
-    return problem
+    return render_template(
+        template_path,
+        "anki.html.j2",
+        url=get_url(url),
+        slug=slug,
+        data=data,
+        neetcode=neetcode,
+    )
 
 
 def format_quizlet(url: str, slug: str, data: dict):
@@ -194,3 +178,12 @@ FORMAT_MAP = {
     "quizlet": format_quizlet,
     "excel": format_excel,
 }
+
+__all__ = [
+    "format_solution_link",
+    "format_anki",
+    "format_quizlet",
+    "format_excel",
+    "FORMAT_MAP",
+    "render_template",
+]
