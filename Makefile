@@ -1,3 +1,5 @@
+.PHONY: all format format-check test type-check sync install clean
+
 all:	
 	@echo "Running make format"
 	$(MAKE) format
@@ -8,16 +10,25 @@ all:
 	@echo "Running make type-check"
 	$(MAKE) type-check
 
+sync:
+	uv sync --dev
+
+install:
+	uv sync
+
+clean:
+	rm -rf .venv
+
 format:
-	python -m ruff format ./leetcode_study_tool
-	python -m ruff check ./leetcode_study_tool --fix
+	uv run ruff format ./leetcode_study_tool
+	uv run ruff check ./leetcode_study_tool --fix
 
 format-check:
-	python -m ruff format ./leetcode_study_tool --check
-	python -m ruff check ./leetcode_study_tool 
+	uv run ruff format ./leetcode_study_tool --check
+	uv run ruff check ./leetcode_study_tool 
 
 test:
-	pytest tests/ --cov --cov-fail-under=85
+	uv run pytest tests/ --cov --cov-fail-under=85
 
 type-check:
-	python -m mypy ./leetcode_study_tool
+	uv run mypy ./leetcode_study_tool

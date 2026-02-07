@@ -148,7 +148,7 @@ def format_excel(url: str, slug: str, data: dict) -> List[Union[str, date]]:
         The Excel problem for the given URL and data. The problem
         is formatted as a list of strings, where each string is a
         column in the Excel file. This row will have the ordering:
-        [id, title, url, date attempted, tags, neetcode, solutions, companies]
+        [id, title, difficulty, url, date attempted, tags, video_url, short_url, solutions, companies]
     """
     row = []
     row.append(data["id"])
@@ -158,10 +158,16 @@ def format_excel(url: str, slug: str, data: dict) -> List[Union[str, date]]:
     row.append(date.today())
     row.append(", ".join([tag["name"] for tag in data["tags"]]))
     if str(data["id"]) in LEETCODE_TO_NEETCODE:
-        neetcode = LEETCODE_TO_NEETCODE[str(data["id"])]
-        row.append(neetcode["url"])
+        neetcode_data = LEETCODE_TO_NEETCODE[str(data["id"])]
+        # Add regular video URL
+        video_url = neetcode_data.get("video", {}).get("url", "")
+        row.append(video_url)
+        # Add shorts URL in new column
+        short_url = neetcode_data.get("short", {}).get("url", "")
+        row.append(short_url)
     else:
-        row.append("")
+        row.append("")  # No regular video
+        row.append("")  # No short
     row.append(data.get("neetcode_solution", ""))
     row.append(
         "\n".join(

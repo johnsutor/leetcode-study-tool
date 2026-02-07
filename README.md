@@ -154,6 +154,57 @@ Here's an example template that highlights the solution code:
 {{ data.tags|map(attribute='slug')|join(' ') }}
 ```
 
+## 🛠 Development 
+
+For developers who want to contribute to this project, we use UV for dependency management:
+
+### Setup with UV
+```shell
+# Install UV (if not already installed)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Clone and setup the project
+git clone https://github.com/johnsutor/leetcode-study-tool.git
+cd leetcode-study-tool
+uv sync --dev
+```
+
+### Development Commands
+```shell
+# Format code
+make format
+
+# Check formatting
+make format-check
+
+# Run tests
+make test
+
+# Type checking
+make type-check
+
+# Sync dependencies
+make sync
+
+# Install only main dependencies
+make install
+```
+
+### Using UV Directly
+```shell
+# Add a new dependency
+uv add package-name
+
+# Add a development dependency
+uv add --dev package-name
+
+# Run any command in the project environment
+uv run python leetcode_study_tool/cli.py --help
+
+# Update lockfile
+uv lock
+```
+
 ## 🛣 Roadmap 
 - [X] Use TQDM to show card generation progress
 - [X] Add support for exporting to an excel sheet
@@ -161,7 +212,8 @@ Here's an example template that highlights the solution code:
 - [X] Add support for getting the difficulty of questions 
 - [X] Add support for Jinja templating formatters 
 - [X] Add support for including NeetCode solution code
-- [ ] Add NeetCode shorts 
+- [X] Migrate to UV for faster dependency management
+- [X] Add NeetCode shorts 
 - [ ] Add support for fetching premium questions via authentification
 - [ ] Add support for importing cards into Quizlet
 - [ ] Add support for fetching questions by topic or tag 

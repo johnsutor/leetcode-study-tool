@@ -18,17 +18,19 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+    - name: Set up UV
+      uses: astral-sh/setup-uv@v3
       with:
-        python-version: ${{ matrix.python-version }}
+        version: "latest"
+    - name: Set up Python ${{ matrix.python-version }}
+      run: |
+        uv python install ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        python -m pip install -e ".[dev]"
+        uv sync --dev
     - name: Type check with MyPy
       run: |
-        python -m mypy ./leetcode_study_tool
+        uv run mypy ./leetcode_study_tool
     - name: Test with pytest, ensuring 75% coverage
       run: |
-        pip install pytest pytest-cov
-        pytest tests/ --cov --cov-fail-under=75
+        uv run pytest tests/ --cov --cov-fail-under=75

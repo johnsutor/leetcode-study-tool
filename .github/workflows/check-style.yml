@@ -17,16 +17,19 @@ jobs:
     runs-on: '${{ matrix.os }}'
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+    - name: Set up UV
+      uses: astral-sh/setup-uv@v3
       with:
-        python-version: ${{ matrix.python-version }}
+        version: "latest"
+    - name: Set up Python ${{ matrix.python-version }}
+      run: |
+        uv python install ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        python -m pip install -e ".[dev]"
+        uv sync --dev
     - name: Examine formatting with ruff 
       run: |
-        python -m ruff check ./leetcode_study_tool 
+        uv run ruff check ./leetcode_study_tool 
     - name: Check formatting 
       run: |
-        python -m ruff format ./leetcode_study_tool --check
+        uv run ruff format ./leetcode_study_tool --check
