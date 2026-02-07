@@ -1,13 +1,13 @@
-import unittest
-from datetime import date
-from textwrap import dedent
-from typing import Any, Dict
+import os
 import re
 import tempfile
-import os
+import unittest
+from datetime import date
+from typing import Any, Dict
 from unittest.mock import patch
 
 import leetcode_study_tool.formatters as formatters
+from leetcode_study_tool.formatters import EXCEL_COLUMNS
 from leetcode_study_tool.queries import get_data, get_url
 
 
@@ -51,14 +51,11 @@ class TestFormatters(unittest.TestCase):
         )
 
     def test_format_anki(self):
-        """Test the Anki card formatter with actual LeetCode data"""
         problem_slug = "two-sum"
         data = get_data(problem_slug)
         formatted_anki = formatters.format_anki(
             get_url(problem_slug), problem_slug, data
         )
-
-        print(formatted_anki)
 
         self.assertAnkiCardStructure(formatted_anki, problem_slug, data)
 
@@ -78,26 +75,19 @@ class TestFormatters(unittest.TestCase):
 
     def test_format_excel(self):
         data = get_data("two-sum")
-        # Don't check the last two elements of the list because they
-        # will change over time. Also, mocking time causes issues with
-        # urllib, so avoid.
         output = formatters.format_excel(get_url("two-sum"), "two-sum", data)
-        output = output[:7]
-        self.assertListEqual(
-            output,
-            [
-                "1",
-                "Two Sum",
-                "Easy",
-                "https://leetcode.com/problems/two-sum/",
-                date.today(),
-                "Array, Hash Table",
-                "https://youtube.com/watch?v=KLlXCFG5TnA",
-            ],
-        )
+
+        self.assertEqual(len(output), len(EXCEL_COLUMNS))
+
+        self.assertEqual(output[0], "1")
+        self.assertEqual(output[1], "Two Sum")
+        self.assertEqual(output[2], "Easy")
+        self.assertEqual(output[3], "https://leetcode.com/problems/two-sum/")
+        self.assertEqual(output[4], date.today())
+        self.assertEqual(output[5], "Array, Hash Table")
+        self.assertEqual(output[6], "https://youtube.com/watch?v=KLlXCFG5TnA")
 
     def test_render_template(self):
-        """Test the template rendering functionality"""
         test_data = {
             "id": "1",
             "title": "Test Problem",
@@ -128,7 +118,6 @@ class TestFormatters(unittest.TestCase):
         )
 
     def test_render_custom_template(self):
-        """Test rendering with a custom template file"""
         with tempfile.NamedTemporaryFile(
             mode="w", suffix=".html.j2", delete=False
         ) as tmp:
@@ -154,12 +143,10 @@ class TestFormatters(unittest.TestCase):
             os.unlink(tmp_path)
 
     def test_render_template_error(self):
-        """Test error handling when no template is provided"""
         with self.assertRaises(ValueError):
             formatters.render_template(None, None)
 
     def test_format_anki_custom_template(self):
-        """Test the Anki card formatter with custom template"""
         problem_slug = "two-sum"
         data = get_data(problem_slug)
 
@@ -181,7 +168,6 @@ class TestFormatters(unittest.TestCase):
             os.unlink(tmp_path)
 
     def test_format_anki_with_template(self):
-        """Test the Anki card formatter with templates"""
         problem_slug = "two-sum"
         data = get_data(problem_slug)
         formatted_anki = formatters.format_anki(
@@ -199,7 +185,6 @@ class TestFormatters(unittest.TestCase):
 
     @patch("leetcode_study_tool.queries.get_data")
     def test_format_anki_with_github_solution(self, mock_get_data):
-        """Test the Anki card formatter with a GitHub solution"""
         problem_slug = "two-sum"
 
         mock_data = {
@@ -222,10 +207,8 @@ class TestFormatters(unittest.TestCase):
         self.assertIn("def two_sum", formatted_anki)
 
     def test_format_anki_with_shorts(self):
-        """Test Anki formatter with both video and short available"""
         problem_slug = "test-problem"
 
-        # Mock data with both video and short
         mock_data = {
             "id": "1",
             "title": "Test Problem",
@@ -236,7 +219,6 @@ class TestFormatters(unittest.TestCase):
             "solutions": [],
         }
 
-        # Mock the LEETCODE_TO_NEETCODE data to include shorts
         mock_neetcode_data = {
             "1": {
                 "video": {
@@ -257,14 +239,12 @@ class TestFormatters(unittest.TestCase):
                 get_url(problem_slug), problem_slug, mock_data
             )
 
-        # Should contain both video and short
         self.assertIn("Full Solution", formatted_anki)
         self.assertIn("Quick Short", formatted_anki)
         self.assertIn("video123", formatted_anki)
         self.assertIn("short123", formatted_anki)
 
     def test_format_anki_short_only(self):
-        """Test Anki formatter with only short available"""
         problem_slug = "test-problem"
 
         mock_data = {
@@ -277,7 +257,6 @@ class TestFormatters(unittest.TestCase):
             "solutions": [],
         }
 
-        # Mock data with only short
         mock_neetcode_data = {
             "217": {
                 "short": {
@@ -294,13 +273,11 @@ class TestFormatters(unittest.TestCase):
                 get_url(problem_slug), problem_slug, mock_data
             )
 
-        # Should contain only short
         self.assertIn("Contains Duplicate - Leetcode 217 - Short", formatted_anki)
         self.assertIn("short217", formatted_anki)
         self.assertNotIn("Full Solution", formatted_anki)
 
     def test_format_anki_no_videos(self):
-        """Test Anki formatter with no video or short available"""
         problem_slug = "test-problem"
 
         mock_data = {
@@ -313,7 +290,6 @@ class TestFormatters(unittest.TestCase):
             "solutions": [],
         }
 
-        # Mock data with no videos
         mock_neetcode_data = {}
 
         with patch(
@@ -323,12 +299,10 @@ class TestFormatters(unittest.TestCase):
                 get_url(problem_slug), problem_slug, mock_data
             )
 
-        # Should not contain any NeetCode links
         self.assertNotIn("NeetCode Solution", formatted_anki)
         self.assertNotIn("youtube.com/watch", formatted_anki)
 
     def test_format_excel_with_shorts(self):
-        """Test Excel formatter with shorts support"""
         problem_slug = "test-problem"
 
         mock_data = {
@@ -341,7 +315,6 @@ class TestFormatters(unittest.TestCase):
             "solutions": [],
         }
 
-        # Mock data with both video and short
         mock_neetcode_data = {
             "1": {
                 "video": {
@@ -362,18 +335,88 @@ class TestFormatters(unittest.TestCase):
                 get_url(problem_slug), problem_slug, mock_data
             )
 
-        # Excel format: [id, title, difficulty, url, date, tags, video_url, short_url, solutions, companies]
-        self.assertEqual(len(excel_output), 11)  # Updated number of columns with short
-        self.assertEqual(
-            excel_output[6], "https://youtube.com/watch?v=video123"
-        )  # Video URL
-        self.assertEqual(
-            excel_output[7], "https://youtube.com/watch?v=short123"
-        )  # Short URL
+        self.assertEqual(len(excel_output), len(EXCEL_COLUMNS))
+        self.assertEqual(excel_output[6], "https://youtube.com/watch?v=video123")
+        self.assertEqual(excel_output[7], "https://youtube.com/watch?v=short123")
+
+    def test_format_excel_no_neetcode(self):
+        problem_slug = "test-problem"
+
+        mock_data = {
+            "id": "999",
+            "title": "Unknown Problem",
+            "difficulty": "Hard",
+            "content": "<p>Test</p>",
+            "tags": [],
+            "companies": [],
+            "solutions": [],
+        }
+
+        mock_neetcode_data = {}
+
+        with patch(
+            "leetcode_study_tool.formatters.LEETCODE_TO_NEETCODE", mock_neetcode_data
+        ):
+            excel_output = formatters.format_excel(
+                get_url(problem_slug), problem_slug, mock_data
+            )
+
+        self.assertEqual(len(excel_output), len(EXCEL_COLUMNS))
+        self.assertEqual(excel_output[6], "")
+        self.assertEqual(excel_output[7], "")
+
+    def test_format_excel_with_companies(self):
+        problem_slug = "test-problem"
+
+        mock_data = {
+            "id": "1",
+            "title": "Test",
+            "difficulty": "Easy",
+            "content": "",
+            "tags": [],
+            "companies": [
+                {"name": "Amazon", "slug": "amazon"},
+                {"name": "Google", "slug": "google"},
+            ],
+            "solutions": [],
+        }
+
+        mock_neetcode_data = {}
+
+        with patch(
+            "leetcode_study_tool.formatters.LEETCODE_TO_NEETCODE", mock_neetcode_data
+        ):
+            excel_output = formatters.format_excel(
+                get_url(problem_slug), problem_slug, mock_data
+            )
+
+        self.assertEqual(excel_output[10], "Amazon, Google")
+
+    def test_format_excel_no_companies(self):
+        problem_slug = "test-problem"
+
+        mock_data = {
+            "id": "1",
+            "title": "Test",
+            "difficulty": "Easy",
+            "content": "",
+            "tags": [],
+            "companies": None,
+            "solutions": [],
+        }
+
+        mock_neetcode_data = {}
+
+        with patch(
+            "leetcode_study_tool.formatters.LEETCODE_TO_NEETCODE", mock_neetcode_data
+        ):
+            excel_output = formatters.format_excel(
+                get_url(problem_slug), problem_slug, mock_data
+            )
+
+        self.assertEqual(excel_output[10], "")
 
     def test_data_structure_migration(self):
-        """Test migration from old to new data structure"""
-        # Old format (current)
         old_format = {
             "1": {
                 "title": "Two Sum - Leetcode 1 - HashMap - Python",
@@ -385,7 +428,6 @@ class TestFormatters(unittest.TestCase):
             },
         }
 
-        # Expected new format
         new_format = {
             "1": {
                 "video": {
@@ -401,9 +443,7 @@ class TestFormatters(unittest.TestCase):
             },
         }
 
-        # Migration function (will be implemented in the main code)
         def migrate_to_new_format(old_data):
-            """Helper function to migrate old data to new format"""
             new_data = {}
             for leetcode_id, video_info in old_data.items():
                 new_data[leetcode_id] = {"video": video_info}
@@ -413,10 +453,6 @@ class TestFormatters(unittest.TestCase):
         self.assertEqual(migrated, new_format)
 
     def test_template_rendering_with_shorts(self):
-        """Test that template correctly renders both videos and shorts"""
-        # This tests the HTML template structure
-        # We'll verify this when we update the anki.html.j2 template
-
         mock_template_data = {
             "url": "https://leetcode.com/problems/test/",
             "slug": "test",
@@ -433,11 +469,15 @@ class TestFormatters(unittest.TestCase):
             },
         }
 
-        # Render template (this will be tested after template update)
         rendered = formatters.render_template(
             None, "anki.html.j2", **mock_template_data
         )
 
-        # Basic checks
         self.assertIn("Test", rendered)
         self.assertIn("https://leetcode.com/problems/test/", rendered)
+
+    def test_excel_columns_constant(self):
+        self.assertEqual(len(EXCEL_COLUMNS), 11)
+        self.assertIn("Neetcode Video", EXCEL_COLUMNS)
+        self.assertIn("Neetcode Short", EXCEL_COLUMNS)
+        self.assertIn("Solution Code", EXCEL_COLUMNS)

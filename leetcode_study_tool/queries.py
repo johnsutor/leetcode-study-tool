@@ -1,6 +1,5 @@
 import json
 import re
-from functools import lru_cache
 from typing import Optional, Union
 from urllib.parse import urlparse
 
@@ -43,6 +42,23 @@ NEETCODE_BASE_URL = (
     "https://raw.githubusercontent.com/neetcode-gh/leetcode/refs/heads/main"
 )
 
+NEETCODE_EXTENSIONS = {
+    "c": ".c",
+    "cpp": ".cpp",
+    "csharp": ".cs",
+    "dart": ".dart",
+    "go": ".go",
+    "java": ".java",
+    "javascript": ".js",
+    "kotlin": ".kt",
+    "python": ".py",
+    "ruby": ".rb",
+    "rust": ".rs",
+    "scala": ".scala",
+    "swift": ".swift",
+    "typescript": ".ts",
+}
+
 
 def get_slug(input: str) -> str:
     """
@@ -58,7 +74,6 @@ def get_slug(input: str) -> str:
     str
         The slug of the given URL or slug.
     """
-
     url = urlparse(input)
 
     if url.scheme and url.netloc:
@@ -78,7 +93,8 @@ def get_url(input: str, type: str = "problem") -> str:
     input : str
         The URL or slug of the question to get the url of.
     type: str
-        The type of the URL to get. Defaults to 'question', must be one of 'question' or 'tag'.
+        The type of the URL to get. Defaults to 'problem', must be one of
+        'problem' or 'tag'.
 
     Returns
     -------
@@ -88,9 +104,9 @@ def get_url(input: str, type: str = "problem") -> str:
     Raises
     ------
     ValueError
-        If the given type is not one of 'question' or 'tag', or if the input is not a valid slug or URL.
+        If the given type is not one of 'problem' or 'tag', or if the input
+        is not a valid slug or URL.
     """
-
     url = urlparse(input)
     if type not in ["problem", "tag"]:
         raise ValueError(f"Invalid type: {type}")
@@ -109,7 +125,7 @@ def generate_session(csrf_token: Union[str, None] = None) -> requests.Session:
 
     Arguments
     ---------
-    crsf_token : str
+    csrf_token : Union[str, None]
         The CSRF token to use for the session.
 
     Returns
@@ -125,7 +141,6 @@ def generate_session(csrf_token: Union[str, None] = None) -> requests.Session:
     return session
 
 
-@lru_cache(maxsize=None)
 def query(
     content: str,
     slug: str,
@@ -141,6 +156,8 @@ def query(
         The content to query for.
     slug : str
         The slug of the question to query for.
+    session : Union[requests.Session, None]
+        The requests session to use. If None, a new session is created.
     **kwargs
         Any additional arguments to pass to the query.
 
@@ -151,10 +168,14 @@ def query(
 
     Raises
     ------
+    ValueError
+        If the content is not a valid query type.
     requests.exceptions.HTTPError
         If the response from the LeetCode GraphQL API is not 200.
     """
-    assert content in MAPPINGS, f"Invalid query content: {content}"
+    if content not in MAPPINGS:
+        raise ValueError(f"Invalid query content: {content}")
+
     if not session:
         session = generate_session()
 
@@ -165,16 +186,14 @@ def query(
             "variables": {"titleSlug": slug, **kwargs},
         },
     )
+
     if response.status_code == 200:
         return dict(json.loads(response.content.decode("utf-8")).get("data"))
-    else:
-        response = requests.Response()
-        response.status_code = 500
-        error = requests.exceptions.HTTPError(
-            f"LeetCode GraphQL API returned {response.status_code}"
-        )
-        error.response = response
-        raise error
+
+    raise requests.exceptions.HTTPError(
+        f"LeetCode GraphQL API returned {response.status_code}",
+        response=response,
+    )
 
 
 def get_neetcode_solution(
@@ -190,8 +209,8 @@ def get_neetcode_solution(
     title : str
         The title of the problem to get the solution for.
     language : str
-        The language to get the solution for. Must be one of the supported languages.
-        Defaults to 'python'.
+        The language to get the solution for. Must be one of the supported
+        languages. Defaults to 'python'.
 
     Returns
     -------
@@ -202,30 +221,10 @@ def get_neetcode_solution(
         return None
 
     padded_id = problem_id.zfill(4)
-
     kebab_title = re.sub(r"[^a-zA-Z0-9\s]", "", title).lower().replace(" ", "-")
-
     file_name = f"{padded_id}-{kebab_title}"
-
-    url = f"{NEETCODE_BASE_URL}/{language}/{file_name}"
-
-    extensions = {
-        "c": ".c",
-        "cpp": ".cpp",
-        "csharp": ".cs",
-        "dart": ".dart",
-        "go": ".go",
-        "java": ".java",
-        "javascript": ".js",
-        "kotlin": ".kt",
-        "python": ".py",
-        "ruby": ".rb",
-        "rust": ".rs",
-        "scala": ".scala",
-        "swift": ".swift",
-        "typescript": ".ts",
-    }
-    url += extensions.get(language, "")
+    ext = NEETCODE_EXTENSIONS.get(language, "")
+    url = f"{NEETCODE_BASE_URL}/{language}/{file_name}{ext}"
 
     try:
         response = requests.get(url)
@@ -241,27 +240,31 @@ def get_data(
     session: Union[requests.Session, None] = None,
 ) -> dict:
     """
-    Get the relevant data for constructing the Anki card for the given URL.
+    Get the relevant data for constructing a study card for the given slug.
 
     Arguments
     ---------
     slug : str
-        The slug of the question to generate an Anki card for.
-    language : str
-        The language to generate an Anki card for.
+        The slug of the question to get data for.
+    language : Union[str, None]
+        The language to get solutions for.
+    session : Union[requests.Session, None]
+        The requests session to use.
 
     Returns
     -------
     dict
-        The relevant data for constructing the Anki card for the given URL.
+        The relevant data for constructing the study card.
     """
     if not session:
         session = generate_session()
 
-    title = query("title", slug, session)["question"]["title"]
-    difficulty = query("title", slug, session)["question"]["difficulty"]
+    title_data = query("title", slug, session)["question"]
+    title = title_data["title"]
+    difficulty = title_data["difficulty"]
+    question_id = title_data["questionId"]
+
     content = query("content", slug, session)["question"]["content"]
-    id = query("title", slug, session)["question"]["questionId"]
     tags = query("tags", slug, session)["question"]["topicTags"]
     companies = query("companies", slug, session)["question"]["companyTags"]
     solutions = query(
@@ -270,17 +273,15 @@ def get_data(
 
     neetcode_solution = None
     if language:
-        neetcode_solution = get_neetcode_solution(id, title, language)
+        neetcode_solution = get_neetcode_solution(question_id, title, language)
 
-    results = {
+    return {
         "title": title,
         "content": content,
         "difficulty": difficulty,
-        "id": id,
+        "id": question_id,
         "tags": tags,
         "companies": companies,
         "solutions": solutions,
         "neetcode_solution": neetcode_solution,
     }
-
-    return results

@@ -4,6 +4,12 @@ from typing import List, Union
 
 import xlsxwriter
 
+from leetcode_study_tool.formatters import (
+    DATE_COLUMN_INDEX,
+    DIFFICULTY_COLUMN_INDEX,
+    EXCEL_COLUMNS,
+)
+
 
 def save_string(problems: List[Union[str, None]], file: str) -> None:
     """
@@ -28,7 +34,7 @@ def save_excel(problems: List[Union[List[Union[str, date]], None]], file: str) -
 
     Arguments
     ---------
-    problems : List[Union[List[str], None]]
+    problems : List[Union[List[Union[str, date]], None]]
         The problems to save.
     file : str
         The file to save the problems to.
@@ -38,68 +44,56 @@ def save_excel(problems: List[Union[List[Union[str, date]], None]], file: str) -
     workbook = xlsxwriter.Workbook(file + ".xlsx")
     worksheet = workbook.add_worksheet()
 
-    worksheet.write(0, 0, "ID")
-    worksheet.write(0, 1, "Title")
-    worksheet.write(0, 2, "Difficulty")
-    worksheet.write(
-        0,
-        3,
-        "Url",
-    )
-    worksheet.write(0, 4, "Date Attempted")
-    worksheet.write(0, 5, "Tags")
-    worksheet.write(0, 6, "Neetcode")
-    worksheet.write(0, 7, "Solutions")
-    worksheet.write(0, 8, "Companies")
-
-    # Add bold formatting to the first row
     bold = workbook.add_format({"bold": True})
-    worksheet.set_row(0, None, bold)
+    for col, header in enumerate(EXCEL_COLUMNS):
+        worksheet.write(0, col, header, bold)
 
-    # Add formatting based on the difficulty
+    last_row = len(problems)
+    diff_col = DIFFICULTY_COLUMN_INDEX
+    date_col = DATE_COLUMN_INDEX
+
     worksheet.conditional_format(
         1,
-        2,
-        len(problems),
-        2,
+        diff_col,
+        last_row,
+        diff_col,
         {
             "type": "cell",
             "criteria": "equal to",
-            "value": "Easy",
+            "value": '"Easy"',
             "format": workbook.add_format({"bg_color": "#00FF00"}),
         },
     )
     worksheet.conditional_format(
         1,
-        2,
-        len(problems),
-        2,
+        diff_col,
+        last_row,
+        diff_col,
         {
             "type": "cell",
             "criteria": "equal to",
-            "value": "Medium",
+            "value": '"Medium"',
             "format": workbook.add_format({"bg_color": "#FFFF00"}),
         },
     )
     worksheet.conditional_format(
         1,
-        2,
-        len(problems),
-        2,
+        diff_col,
+        last_row,
+        diff_col,
         {
             "type": "cell",
             "criteria": "equal to",
-            "value": "Hard",
+            "value": '"Hard"',
             "format": workbook.add_format({"bg_color": "#FF0000"}),
         },
     )
 
-    # Add gradient formatting to the date attempted row
     worksheet.conditional_format(
         1,
-        4,
-        len(problems),
-        4,
+        date_col,
+        last_row,
+        date_col,
         {
             "type": "3_color_scale",
             "min_color": "red",
@@ -112,17 +106,16 @@ def save_excel(problems: List[Union[List[Union[str, date]], None]], file: str) -
 
     for i, problem in enumerate(problems, start=1):
         if problem:
-            for j, line in enumerate(problem):
-                if type(line) is date and j == 3:
-                    worksheet.write_datetime(i, j, line, date_format)
+            for j, cell in enumerate(problem):
+                if isinstance(cell, date):
+                    worksheet.write_datetime(i, j, cell, date_format)
                 else:
-                    worksheet.write(i, j, line)
+                    worksheet.write(i, j, cell)
 
     workbook.close()
 
 
 SAVE_MAP = {
     "anki": save_string,
-    "quizlet": save_string,
     "excel": save_excel,
 }

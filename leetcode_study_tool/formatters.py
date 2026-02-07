@@ -12,10 +12,27 @@ env = Environment(
     loader=FileSystemLoader(template_dir), autoescape=select_autoescape(["html", "xml"])
 )
 
+EXCEL_COLUMNS = [
+    "ID",
+    "Title",
+    "Difficulty",
+    "URL",
+    "Date Attempted",
+    "Tags",
+    "Neetcode Video",
+    "Neetcode Short",
+    "Solution Code",
+    "Solutions",
+    "Companies",
+]
+
+DATE_COLUMN_INDEX = EXCEL_COLUMNS.index("Date Attempted")
+DIFFICULTY_COLUMN_INDEX = EXCEL_COLUMNS.index("Difficulty")
+
 
 def format_solution_link(slug: str, solution_id: str) -> str:
     """
-    format a link to the LeetCode solution with the given ID.
+    Format a link to the LeetCode solution with the given ID.
 
     Arguments
     ---------
@@ -36,13 +53,13 @@ def render_template(
     template_path: Optional[str], template_name: Optional[str], **kwargs
 ) -> str:
     """
-    Render a template with the given context
+    Render a template with the given context.
 
     Arguments
     ---------
     template_path : Optional[str]
         Path to a custom template file. If None, use built-in templates.
-    template_name : str
+    template_name : Optional[str]
         Name of the built-in template to use if template_path is None.
     kwargs : dict
         Template context variables.
@@ -54,6 +71,7 @@ def render_template(
     """
     if not template_path and not template_name:
         raise ValueError("Either template_path or template_name must be provided")
+
     if template_path:
         custom_dir = Path(template_path).parent
         custom_file = Path(template_path).name
@@ -63,7 +81,6 @@ def render_template(
         )
         template = custom_env.get_template(custom_file)
     else:
-        assert template_name is not None
         template = env.get_template(template_name)
 
     kwargs["solution_url"] = format_solution_link
@@ -74,7 +91,7 @@ def format_anki(
     url: str, slug: str, data: dict, template_path: Optional[str] = None
 ) -> str:
     """
-    formats an Anki problem using Jinja template
+    Format an Anki problem using a Jinja template.
 
     Arguments
     ---------
@@ -108,30 +125,9 @@ def format_anki(
     return rendered
 
 
-def format_quizlet(url: str, slug: str, data: dict):
-    """
-    formats a Quizlet problem for the given URL and data
-
-    Arguments
-    ---------
-    url : str
-        The URL of the question to format a problem for.
-    slug : str
-        The slug of the question to format a problem for.
-    data : dict
-        The data of the question to format a problem for.
-
-    Returns
-    -------
-    str
-        The Quizlet problem for the given URL and data.
-    """
-    pass
-
-
 def format_excel(url: str, slug: str, data: dict) -> List[Union[str, date]]:
     """
-    formats an Excel problem for the given URL and data
+    Format an Excel row for the given URL and data.
 
     Arguments
     ---------
@@ -144,57 +140,42 @@ def format_excel(url: str, slug: str, data: dict) -> List[Union[str, date]]:
 
     Returns
     -------
-    str
-        The Excel problem for the given URL and data. The problem
-        is formatted as a list of strings, where each string is a
-        column in the Excel file. This row will have the ordering:
-        [id, title, difficulty, url, date attempted, tags, video_url, short_url, solutions, companies]
+    List[Union[str, date]]
+        A list of cell values matching EXCEL_COLUMNS:
+        [id, title, difficulty, url, date_attempted, tags,
+         video_url, short_url, solution_code, solutions, companies]
     """
-    row = []
-    row.append(data["id"])
-    row.append(data["title"])
-    row.append(data["difficulty"])
-    row.append(get_url(url))
-    row.append(date.today())
-    row.append(", ".join([tag["name"] for tag in data["tags"]]))
-    if str(data["id"]) in LEETCODE_TO_NEETCODE:
-        neetcode_data = LEETCODE_TO_NEETCODE[str(data["id"])]
-        # Add regular video URL
-        video_url = neetcode_data.get("video", {}).get("url", "")
-        row.append(video_url)
-        # Add shorts URL in new column
-        short_url = neetcode_data.get("short", {}).get("url", "")
-        row.append(short_url)
-    else:
-        row.append("")  # No regular video
-        row.append("")  # No short
-    row.append(data.get("neetcode_solution", ""))
-    row.append(
+    neetcode = LEETCODE_TO_NEETCODE.get(str(data["id"]), {})
+
+    return [
+        data["id"],
+        data["title"],
+        data["difficulty"],
+        get_url(url),
+        date.today(),
+        ", ".join(tag["name"] for tag in data["tags"]),
+        neetcode.get("video", {}).get("url", ""),
+        neetcode.get("short", {}).get("url", ""),
+        data.get("neetcode_solution", ""),
         "\n".join(
-            [
-                format_solution_link(slug, solution["id"])
-                for solution in data["solutions"]
-            ]
-        )
-    )
-    if data.get("companies"):
-        row.append(", ".join([company["name"] for company in data["companies"]]))
-    else:
-        row.append("")
-    return row
+            format_solution_link(slug, solution["id"]) for solution in data["solutions"]
+        ),
+        ", ".join(company["name"] for company in (data.get("companies") or [])),
+    ]
 
 
 FORMAT_MAP = {
     "anki": format_anki,
-    "quizlet": format_quizlet,
     "excel": format_excel,
 }
 
 __all__ = [
     "format_solution_link",
     "format_anki",
-    "format_quizlet",
     "format_excel",
     "FORMAT_MAP",
     "render_template",
+    "EXCEL_COLUMNS",
+    "DATE_COLUMN_INDEX",
+    "DIFFICULTY_COLUMN_INDEX",
 ]
