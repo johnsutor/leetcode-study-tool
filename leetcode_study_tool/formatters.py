@@ -81,6 +81,7 @@ def render_template(
         )
         template = custom_env.get_template(custom_file)
     else:
+        assert template_name is not None
         template = env.get_template(template_name)
 
     kwargs["solution_url"] = format_solution_link

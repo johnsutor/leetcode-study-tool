@@ -1,4 +1,5 @@
 import os
+import tempfile
 import unittest
 from datetime import date
 from unittest.mock import patch
@@ -34,7 +35,7 @@ class TestSavers(unittest.TestCase):
         mock_workbook.assert_called_once_with("fake-file.xlsx")
 
     def test_save_excel_creates_file(self):
-        test_file = "/tmp/test_leetcode_output"
+        test_file = os.path.join(tempfile.gettempdir(), "test_leetcode_output")
         try:
             outputs.save_excel([self.fake_excel_row], test_file)
             self.assertTrue(os.path.exists(test_file + ".xlsx"))
@@ -50,7 +51,7 @@ class TestSavers(unittest.TestCase):
         )
 
     def test_save_excel_skips_none_problems(self):
-        test_file = "/tmp/test_leetcode_none"
+        test_file = os.path.join(tempfile.gettempdir(), "test_leetcode_none")
         try:
             outputs.save_excel([None, self.fake_excel_row, None], test_file)
             self.assertTrue(os.path.exists(test_file + ".xlsx"))

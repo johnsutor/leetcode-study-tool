@@ -1,4 +1,8 @@
 # Changelog 
+## 1.3.6 
+- Add option to incorporate NeetCode shorts
+- Simplify codebase and expand testing 
+
 ## 1.3.5
 - Add Jinja templates in favor over standard library for string formatting 
 - Add problems pulled from Neetcode solutions GitHub
