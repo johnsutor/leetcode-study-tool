@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "leetcode-study-tool"
-version = "1.3.6"
+version = "1.3.7"
 description = "A tool for studying Leetcode with Python"
 requires-python = ">=3.8"
 authors = [{name="John Sutor", email="johnsutor3@gmail.com" }]

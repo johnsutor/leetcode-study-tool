@@ -1,4 +1,7 @@
 # Changelog 
+## 1.3.7
+- Include shorts 
+
 ## 1.3.6 
 - Add option to incorporate NeetCode shorts
 - Simplify codebase and expand testing 

@@ -214,11 +214,11 @@ uv lock
 - [X] Add support for including NeetCode solution code
 - [X] Migrate to UV for faster dependency management
 - [X] Add NeetCode shorts 
+- [X] Reach 90% test coverage
 - [ ] Add support for fetching premium questions via authentification
 - [ ] Add support for importing cards into Quizlet
 - [ ] Add support for fetching questions by topic or tag 
 link
-- [ ] Reach 90% test coverage
 
 ## 🔎 Other Usefull Stuff
 - [Remember anything with Anki](https://foggymountainpass.com/anki-essentials/)
